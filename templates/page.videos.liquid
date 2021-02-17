@@ -1,0 +1,90 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'videos.scss.css' | asset_url | stylesheet_tag }}
+
+   <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1><span class="bold"><ls-static-5991620>Videos</ls-static-5991620></span></h1>
+      </div>
+    </div>
+    <img src="{{ 'videos-bg.jpg' | asset_url }}" alt="">
+  </section>
+  <!-- \Hero -->
+
+  <!-- Featured Video -->
+  <section class="featured">
+    <div class="container">
+      <h2><ls-static-8753326>Featured</ls-static-8753326> <span class="bold"><ls-static-4370723>Video</ls-static-4370723></span></h2>
+      <div class="video-bg">
+        <div class="video">
+          <video controls poster="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/2020-07-22_20_40_31-Movies_TV.png?v=1595475726">
+            <source src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/Simple_Spectrum_Supplement_Educational_Video.mp4?v=1595474310" type="video/mp4">
+          </video>
+          <div class="video-screen">
+            <img src="{{ 'video-bg.jpg' | asset_url }}" alt="">
+          </div>
+          <div class="play-btn"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- \Featured Video -->
+
+  <!-- Videos Section -->
+  <section class="watch">
+    <div class="container">
+      <div class="text">
+        <h2><ls-static-2512643>Watch Simple Spectrum</ls-static-2512643></h2>
+        <p>
+          <ls-static-1976411>Finding nutritional options that you can trust for your children is so important. Learn more about our supplement.</ls-static-1976411>
+        </p>
+      </div>
+
+      <div class="videos-block">
+        <div class="select mobile-categories">
+          <div class="active"><ls-static-9728407>TESTIMONIALS</ls-static-9728407></div>
+          <ul>
+            <li><ls-static-1377186>science</ls-static-1377186></li>
+            <li><ls-static-9291583>story</ls-static-9291583></li>
+            <li><ls-static-6678669>view all</ls-static-6678669></li>
+          </ul>
+        </div>
+
+        <ul class="desktop-categories">
+          <li class="active"><ls-static-8640641>TESTIMONIALS</ls-static-8640641></li>
+          <li><ls-static-6979813>science</ls-static-6979813></li>
+          <li><ls-static-6583652>story</ls-static-6583652></li>
+          <li><ls-static-7093516>view all</ls-static-7093516></li>
+        </ul>
+
+        <div class="videos-grid">
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- \Videos Section -->
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <div class="container">
+      <h2><ls-static-9289985>Subscribe to the</ls-static-9289985> <span class="bold"><ls-static-7278685>Simple Digest</ls-static-7278685></span></h2>
+      <p>
+        <ls-static-2616884>We’ll send you tips and resources as well as sales and promotions!</ls-static-2616884>
+      </p>
+      {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="form--success">{% include 'LS_83195002989_locales', LS_locales_item: 'general.newsletter_form.confirmation',   %}{% if LS_83195002989_locales_value == blank %}{{ 'general.newsletter_form.confirmation' | t }}{% else %}{{ LS_83195002989_locales_value  }}{% endif %}</p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="contact[email]" placeholder="&lt;ls-static-1997512&gt;Enter your email address&lt;/ls-static-1997512&gt;">
+        <button type="submit" class="btn blue-btn"><ls-static-8820971>sign me up</ls-static-8820971></button>
+      {% endif %}
+      {% endform %}
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+{{ 'videos.js' | asset_url | script_tag }}

@@ -1,0 +1,173 @@
+{%- include 'LS_83195002989_global' -%}
+<style>
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    background: #e87a68;
+    text-align: center;
+  }
+  
+  .bottom-bar a {
+    width: 100%;
+    padding-top: 0.65vw;
+    color: #FFF;
+    text-align: center !important;
+    font-weight: 500;
+    font-size: 1vw;
+    letter-spacing: 0.05vw;
+  }
+  @media screen and (min-width:1000px){
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    right:280px;
+    height: 40px;
+    width: auto;
+    padding: 0px 20px;
+    background: #e87a68;
+    text-align: center;
+  }
+  .bottom-bar a {
+    width: 100%;
+    line-height:40px;
+    color: #FFF;
+    text-align: center !important;
+    font-weight: 500;
+    font-size: 1vw;
+    letter-spacing: 0.05vw;
+  }
+  }
+  
+  @media (max-width: 1000px) {
+    .bottom-bar {
+      height: 18vw;
+    }
+
+    .bottom-bar a {
+      display: block;
+      padding-top: 3.4vw;
+      font-size: 6vw;
+      letter-spacing: 0.3vw;
+    }
+    
+    #shopify-section-footer {
+      padding-bottom: 8vw;
+    }
+  }
+</style>
+<div class="bottom-bar">
+  <a href="/products/simple-spectrum-nutritional-support-supplement"><ls-static-6603090>SHOP NOW!</ls-static-6603090></a>
+</div>
+
+<!-- Footer -->
+  <footer>
+    <!-- Top Footer -->
+    <div class="container container-top">
+      <div class="contact-us">
+        <h4>{% capture LS_locales_settings_key %}{{ section.id }}.contact-header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.contact-header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h4>
+        <p>
+          {% capture LS_locales_settings_key %}{{ section.id }}.contact-text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.contact-text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+        </p>
+        <a href="https://www.facebook.com/simplespectrumsupplement/"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.instagram.com/simplespectrumsupplement/?hl=en"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/simplespectrum"><i class="fab fa-twitter-square"></i></a>
+      </div>
+      <div class="why-simple">
+        <h4>{% capture LS_locales_settings_key %}{{ section.id }}.why-header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.why-header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h4>
+        <p>
+          {% capture LS_locales_settings_key %}{{ section.id }}.why-text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.why-text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+        </p>
+      </div>
+      <div>
+        <h4>{% capture LS_locales_settings_key %}{{ section.id }}.menu-header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.menu-header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h4>
+        <ul>
+          {% for link in linklists[section.settings.menu-nav].links %}
+            <li><a href= "{{ link.url }}">{% include 'LS_83195002989_nav_title', item: link %}{{ LS_83195002989_link_title  }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="useful-links">
+        <h4>{% capture LS_locales_settings_key %}{{ section.id }}.menu-2-header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.menu-2-header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h4>
+        <ul>
+          {% for link2 in linklists[section.settings.menu-2-nav].links %}
+            <li><a href= "{{ link2.url }}">{% include 'LS_83195002989_nav_title', item: link2 %}{{ LS_83195002989_link_title  }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <!-- \Top Footer -->
+
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="copyright">{% capture LS_locales_settings_key %}{{ section.id }}.copyright_text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.copyright_text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</div>
+        <p>
+          {% capture LS_locales_settings_key %}{{ section.id }}.disclaimer_text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.disclaimer_text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+        </p>
+      </div>
+    </div>
+    <!-- \Bottom Footer -->
+
+  </footer>
+<!-- \Footer -->
+{{ 'main.js' | asset_url | script_tag }}
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+         "type": "text",
+         "id": "contact-header",
+         "label": "Contact Header"
+      },
+      {
+         "type": "html",
+         "id": "contact-text",
+         "label": "Contact Text"
+      },
+      {
+         "type": "text",
+         "id": "why-header",
+         "label": "Why Header"
+      },
+      {
+         "type": "html",
+         "id": "why-text",
+         "label": "Why Text"
+      },
+      {
+         "type": "text",
+         "id": "menu-header",
+         "label": "Menu Header"
+      },
+      {
+         "type": "link_list",
+         "id": "menu-nav",
+         "label": "Menu navigation"
+      },
+      {
+         "type": "text",
+         "id": "menu-2-header",
+         "label": "Menu 2 Header"
+      },
+      {
+         "type": "link_list",
+         "id": "menu-2-nav",
+         "label": "Menu 2 navigation"
+      },
+      {
+         "type": "text",
+         "id": "copyright_text",
+         "label": "Copyright Text"
+      },
+      {
+         "type": "text",
+         "id": "disclaimer_text",
+         "label": "Disclaimer Text"
+      }
+    ]
+  }
+{% endschema %}

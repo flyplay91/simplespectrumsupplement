@@ -1,0 +1,105 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'blog.scss.css' | asset_url | stylesheet_tag }}
+
+<!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1>{% include 'LS_83195002989_title', item: blog %}{{ LS_83195002989_item_title  }}</h1>
+      </div>
+    </div>
+    <img src="{{ 'blog-bg.jpg' | asset_url }}" alt="">
+  </section>
+<!-- \Hero -->
+
+<!-- Blog Section -->
+  <section class="blog">
+    <div class="container">
+      <div class="blog-grid">
+        
+      </div>
+      <button class="btn blue-btn"><ls-static-5047239>load more</ls-static-5047239></button>
+    </div>
+  </section>
+  <!-- \Blog Section -->
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <div class="container">
+      <h2><ls-static-8888733>Subscribe to the</ls-static-8888733> <span class="bold"><ls-static-9513567>Simple Digest</ls-static-9513567></span></h2>
+      <p>
+        <ls-static-3216269>We’ll send you tips and resources as well as sales and promotions!</ls-static-3216269>
+      </p>
+      {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="form--success">{% include 'LS_83195002989_locales', LS_locales_item: 'general.newsletter_form.confirmation',   %}{% if LS_83195002989_locales_value == blank %}{{ 'general.newsletter_form.confirmation' | t }}{% else %}{{ LS_83195002989_locales_value  }}{% endif %}</p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="contact[email]" placeholder="&lt;ls-static-1152329&gt;Enter your email address&lt;/ls-static-1152329&gt;">
+        <button type="submit" class="btn blue-btn"><ls-static-8292888>sign me up</ls-static-8292888></button>
+      {% endif %}
+      {% endform %}
+    </div>
+  </section>
+  <!-- \Subscribe -->
+<script>
+  jQuery(document).ready(function($) {
+    var articles = [
+    {% assign count = 0 %}
+    {% for article in blog.articles %}
+    {% assign count = count | plus: 1 %}
+      {
+        "url": "{{ article.url }}",
+        "title": "{% include 'LS_83195002989_title', item: article %}{{ LS_83195002989_item_title  }}",
+        "image": "{% comment ls-rpl %}{{ article.image.src | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: article.image.src, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}",
+        {% if article.excerpt.size > 0 %}
+          "content": "{% include 'LS_83195002989_excerpt', item: article %}{{ LS_83195002989_item_excerpt }}"
+        {% else %}
+          "content": "{% include 'LS_83195002989_content', item: article %}{{ LS_83195002989_item_content | strip_html | strip_newlines | truncatewords: 100  }}"
+        {% endif %}
+      }{% if count < blog.articles_count %},{% endif %}
+    {% endfor %}
+    ];
+
+    var template = '<a href="{blog_url}" class="blog-item">'
+          + '<img src="{image}" alt="">'
+          + '<div class="blog-item-info">'
+            + '<h3>{blog_title}</h3>'
+            + '<div class="text">'
+            + '<p>{blog_content}</p>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+
+    addTiles();
+
+    function addTiles() {
+      if (!articles.length) {
+        $(".btn.blue-btn").css("visibility", "hidden");
+        return;
+      }
+
+      for (var i = 0; i < 6; i++) {
+        if (!articles.length) {
+          break;
+        } else if (articles.length === 1) {
+          $(".btn.blue-btn").css("visibility", "hidden");
+        }
+
+        var articleObj = articles.shift();
+        var dColInst = JSON.parse(JSON.stringify(template));
+        dColInst = dColInst.replace(new RegExp("{image}", 'g'), articleObj.image);
+        dColInst = dColInst.replace(new RegExp("{blog_url}", 'g'), articleObj.url);
+        dColInst = dColInst.replace(new RegExp("{blog_title}", 'g'), articleObj.title);
+        dColInst = dColInst.replace(new RegExp("{blog_content}", 'g'), articleObj.content);
+        $(".blog .blog-grid").append(dColInst);
+      }
+    }
+
+    $(document).on("click", ".btn.blue-btn", function() {
+      addTiles();
+    });
+  });
+</script>
+{{ 'blog.js' | asset_url | script_tag }}

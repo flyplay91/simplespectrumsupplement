@@ -1,0 +1,60 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'account.scss.css' | asset_url | stylesheet_tag }}
+<div class="page-width account-padding">
+  <div class="section-header text-center">
+    <h1><ls-static-9701865>My Account</ls-static-9701865></h1>
+    {{ "Logout" | customer_logout_link }}
+  </div>
+
+  <div class="grid myaccount">
+    <div class="grid__item myaccount__order-history">
+      <h2><ls-static-3031403>Orders</ls-static-3031403></h2>
+
+      {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                <th scope="col"><ls-static-1564375>Order Number</ls-static-1564375></th>
+                <th scope="col"><ls-static-9099286>Order Date</ls-static-9099286></th>
+                <th scope="col"><ls-static-9713545>Payment Status</ls-static-9713545></th>
+                <th scope="col"><ls-static-4047646>Fulfillment Status</ls-static-4047646></th>
+                <th scope="col"><ls-static-4003156>Total</ls-static-4003156></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                <tr>
+                  <th data-label="Order Number" scope="row">
+                    <a href="{{ order.customer_url }}" class="btn btn--secondary btn--small" aria-label="{{ order.name }}">{{ order.name }}</a>
+                  </th>
+                  <td data-label="Order Date">{{ order.created_at | time_tag: format: 'date' }}</td>
+                  <td data-label="Payment Status">{{ order.financial_status_label }}</td>
+                  <td data-label="Fulfillment Status">{{ order.fulfillment_status_label }}</td>
+                  <td data-label="Total">{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: order.total_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ order.total_price | money }}{% endif %}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        {% else %}
+
+          <p><ls-static-3574144>No orders</ls-static-3574144></p>
+
+        {% endif %}
+        {%- if paginate.pages > 1 -%}
+          {% include 'pagination', paginate: paginate %}
+        {%- endif -%}
+      {% endpaginate %}
+    </div>
+    <div class="grid__item myaccount__account-details">
+      <h2><ls-static-2378637>Account details</ls-static-2378637></h2>
+
+      {{ customer.default_address | format_address }}
+
+      <p><a href="{{ routes.account_addresses_url }}" class="btn btn--small"><ls-static-2266680>View Addresses: (</ls-static-2266680>{{ customer.addresses_count }})</a></p>
+      <p><a href="/tools/checkout/api/manage/subscription/app" class="text-link"><ls-static-128217>Manage Subscription</ls-static-128217></a></p>
+    </div>
+  </div>
+</div>

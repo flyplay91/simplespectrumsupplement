@@ -1,0 +1,201 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'account.scss.css' | asset_url | stylesheet_tag }}
+<div class="page-width account-padding">
+  <div class="section-header text-center">
+    <h1><ls-static-4198957>My Account</ls-static-4198957></h1>
+    <p><a href="{{ routes.account_url }}"><ls-static-4043144>Return</ls-static-4043144></a></p>
+  </div>
+
+  <div class="grid myaccount">
+    <div class="grid__item myaccount__order-history">
+      <h2>{{ order.name }}</h2>
+
+      {%- assign order_date = order.created_at | time_tag: format: "date_at_time" -%}
+      <p><ls-static-1229196>Order Date:</ls-static-1229196> {{ order_date }}</p>
+
+      {%- if order.cancelled -%}
+        <div class="order--cancelled">
+          {%- assign cancelled_at = order.cancelled_at | time_tag: format: "date_at_time" -%}
+          <p><ls-static-2525216>Cancelled At:</ls-static-2525216> {{ cancelled_at }}</p>
+          <p><ls-static-7387603>Reason:</ls-static-7387603> {{ order.cancel_reason_label }}</p>
+        </div>
+      {%- endif -%}
+
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th scope="col"><ls-static-7597144>Product</ls-static-7597144></th>
+            <th scope="col"><ls-static-4431944>SKU</ls-static-4431944></th>
+            <th class="text-right" scope="col"><ls-static-8085222>Price</ls-static-8085222></th>
+            <th class="text-right" scope="col"><ls-static-7630955>Quantity</ls-static-7630955></th>
+            <th class="text-right" scope="col"><ls-static-1389360>Total</ls-static-1389360></th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr id="{{ line_item.key }}">
+              <th class="order-table__product" scope="row" data-label="Product">
+                <div>
+                  {{ line_item.title | link_to: line_item.product.url }}
+                  {%- if line_item.line_level_discount_allocations != blank -%}
+                    <ul class="order-discount order-discount--list order-discount--title" aria-label="Discount">
+                      {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                        <li class="order-discount__item">
+                          {{ discount_allocation.discount_application.title }} (-{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: discount_allocation.amount, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ discount_allocation.amount | money }}{% endif %})
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+                {%- if line_item.fulfillment -%}
+                  <div class="note">
+                    {%- assign created_at = line_item.fulfillment.created_at | time_tag: format: 'date' -%}
+                    <ls-static-7725703>Fulfilled at:</ls-static-7725703> {{  created_at }}
+                    <div>
+                      {%- if line_item.fulfillment.tracking_url -%}
+                        <a href="{{ line_item.fulfillment.tracking_url }}">
+                          <ls-static-8659784>Track Shipment</ls-static-8659784>
+                        </a>
+                      {%- endif -%}
+                      <div>
+                        {{ line_item.fulfillment.tracking_company }}
+                        {%- if line_item.fulfillment.tracking_number -%} #{{ line_item.fulfillment.tracking_number }} {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+                {%- endif -%}
+              </th>
+              <td data-label="SKU">{{ line_item.sku }}</td>
+              <td class="text-right" data-label="Price">
+                <dl>
+                  {%- if line_item.original_price != line_item.final_price -%}
+                    <dt>
+                      <span class="visually-hidden"><ls-static-8777573>Regular Price</ls-static-8777573></span>
+                    </dt>
+                    <dd>
+                      <s>{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: line_item.original_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ line_item.original_price | money }}{% endif %}</s>
+                    </dd>
+                    <dt>
+                      <span class="visually-hidden"><ls-static-1561981>Sale Price</ls-static-1561981></span>
+                    </dt>
+                    <dd>
+                      <span class="order-discount">{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: line_item.final_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ line_item.final_price | money }}{% endif %}</span>
+                    </dd>
+                  {%- else -%}
+                    <dt>
+                      <span class="visually-hidden"><ls-static-2351480>Price</ls-static-2351480></span>
+                    </dt>
+                    <dd>
+                      {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: line_item.original_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ line_item.original_price | money }}{% endif %}
+                    </dd>
+                  {%- endif -%}
+
+                  {%- if line_item.unit_price_measurement -%}
+                    <dt>
+                      <span class="visually-hidden visually-hidden--inline"><ls-static-8361884>Unit Price</ls-static-8361884></span>
+                    </dt>
+                    <dd>
+                      <span class="price-unit-price">
+                        {%- capture unit_price_separator -%}
+                          <span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;</span>
+                        {%- endcapture -%}
+                        {%- capture unit_price_base_unit -%}
+                          {%- if line_item.unit_price_measurement.reference_value != 1 -%}
+                            {{- line_item.unit_price_measurement.reference_value -}}
+                          {%- endif -%}
+                          {{ line_item.unit_price_measurement.reference_unit }}
+                        {%- endcapture -%}
+
+                        <span data-unit-price>{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: line_item.unit_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ line_item.unit_price | money }}{% endif %}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
+                      </span>
+                    </dd>
+                  {%- endif -%}
+                </dl>
+              </td>
+              <td class="text-right" data-label="Quantity">{{ line_item.quantity }}</td>
+              <td class="text-right" data-label="Total">
+                {%- if line_item.original_line_price != line_item.final_line_price -%}
+                  <dl>
+                    <dt>
+                      <span class="visually-hidden"><ls-static-2577476>Regular Price</ls-static-2577476></span>
+                    </dt>
+                    <dd>
+                      <s>{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: line_item.original_line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ line_item.original_line_price | money }}{% endif %}</s>
+                    </dd>
+                    <dt>
+                      <span class="visually-hidden"><ls-static-4807988>Sale Price</ls-static-4807988></span>
+                    </dt>
+                    <dd>
+                      <span class="order-discount">{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: line_item.final_line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ line_item.final_line_price | money }}{% endif %}</span>
+                    </dd>
+                  </dl>
+                {%- else -%}
+                  {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: line_item.original_line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ line_item.original_line_price | money }}{% endif %}
+                {%- endif -%}
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="small--hide" scope="row" colspan="4"><ls-static-2869883>Subtotal</ls-static-2869883></th>
+            <td class="text-right" data-label="Subtotal">{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: order.line_items_subtotal_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ order.line_items_subtotal_price | money }}{% endif %}</td>
+          </tr>
+
+          {%- if order.cart_level_discount_applications != blank -%}
+            <tr>
+              {%- for discount_application in order.cart_level_discount_applications -%}
+                <th class="small--hide" scope="row" colspan="4">
+                  <ls-static-1177173>Discount</ls-static-1177173>
+                  <span class="order-discount order-discount--title">
+                    {{- discount_application.title -}}
+                  </span>
+                </th>
+                <td class="text-right" data-label="Discount">
+                  <div class="order-discount-wrapper">
+                    <span class="order-discount order-discount--title text-left medium-up--hide">
+                      {{- discount_application.title -}}
+                    </span>
+                    <span class="order-discount">-{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: discount_application.total_allocated_amount, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ discount_application.total_allocated_amount | money }}{% endif %}</span>
+                  </div>
+                </td>
+              {%- endfor -%}
+            </tr>
+          {%- endif -%}
+
+          {%- for shipping_method in order.shipping_methods -%}
+            <tr>
+              <th class="small--hide" scope="row" colspan="4"><ls-static-7406662>Shipping: (</ls-static-7406662>{{ shipping_method.title }})</th>
+              <td class="text-right" data-label="Shipping: ({{ shipping_method.title }})">{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: shipping_method.price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ shipping_method.price | money }}{% endif %}</td>
+            </tr>
+          {%- endfor -%}
+
+          {%- for tax_line in order.tax_lines -%}
+            <tr>
+              <th class="small--hide" scope="row" colspan="4"><ls-static-4965032>Tax: (</ls-static-4965032>{{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</th>
+              <td class="text-right" data-label="Tax: ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: tax_line.price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ tax_line.price | money }}{% endif %}</td>
+            </tr>
+          {%- endfor -%}
+
+          <tr>
+            <th class="small--hide" scope="row" colspan="4"><ls-static-2685582>Total</ls-static-2685582></th>
+            <td class="text-right" data-label="total">{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: order.total_price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ order.total_price | money_with_currency }}{% endif %}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="grid__item myaccount__account-details">
+      <h3><ls-static-6456721>Billing Address</ls-static-6456721></h3>
+
+      <p><strong><ls-static-9142502>Payment Status:</ls-static-9142502></strong> {{ order.financial_status_label }}</p>
+
+      {{ order.billing_address | format_address }}
+
+      <h3><ls-static-7721765>Shipping Address</ls-static-7721765></h3>
+
+      <p><strong><ls-static-9651990>Fulfillment Status:</ls-static-9651990></strong> {{ order.fulfillment_status_label }}</p>
+
+      {{ order.shipping_address | format_address }}
+    </div>
+  </div>
+</div>

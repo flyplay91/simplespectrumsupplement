@@ -1,0 +1,62 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Subscribe -->
+  <section id="subscribe-section" class="subscribe">
+    <div class="container">
+      <h2>{% capture LS_locales_settings_key %}{{ section.id }}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h2>
+      <p>
+        {% capture LS_locales_settings_key %}{{ section.id }}.text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+      </p>
+      <div class="klaviyo-form-RemUJ2"></div>
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+<script>
+  jQuery(document).ready(function($) {
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-RemUJ2 input[name='email']"));
+        var inputBox = $(".klaviyo-form-RemUJ2 input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RemUJ2 button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+  });
+</script>
+
+  {% schema %}
+  {
+    "name": "Subscribe",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "id": "header",
+        "type": "html",
+        "label": "Header"
+      },
+      {
+        "id": "text",
+        "type": "html",
+        "label": "Text"
+      }
+    ],
+    "presets": [{
+      "name": "Subscribe",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

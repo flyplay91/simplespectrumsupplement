@@ -1,0 +1,57 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Research Section -->
+  <section class="research">
+    <div class="container">
+      {% for block in section.blocks %}
+      <div class="research-item {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.color{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.color }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}-color">
+        <h3>{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h3>
+        <p>
+          {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+        </p>
+        <a href="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.url{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.url }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}">{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.link_text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.link_text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- \Research Section -->
+
+  {% schema %}
+  {
+    "name": "Studies",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Add Study",
+        "settings": [
+          {
+            "id": "header",
+            "type": "html",
+            "label": "Header"
+          },
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          },
+          {
+            "id": "url",
+            "type": "url",
+            "label": "URL"
+          },
+          {
+            "id": "link_text",
+            "type": "text",
+            "label": "Link Text"
+          },
+          {
+            "id": "color",
+            "type": "text",
+            "label": "Color"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

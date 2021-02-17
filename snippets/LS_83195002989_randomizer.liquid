@@ -1,0 +1,1 @@
+{%- assign diff = max | minus: min -%}{%- capture randomized -%}{{ "now" | date: "%N" | modulo: diff | plus: min }}{%- endcapture -%}

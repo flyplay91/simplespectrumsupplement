@@ -1,0 +1,196 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'account.scss.css' | asset_url | stylesheet_tag }}
+{% paginate customer.addresses by 5 %}
+
+<div class="page-width text-center account-padding">
+  <header class="section-header">
+    <h1><ls-static-9364569>Addresses</ls-static-9364569></h1>
+    <p><a href="{{ routes.account_url }}"><ls-static-5978936>Return to my account</ls-static-5978936></a></p>
+    <p>
+      <button type="button" class="btn address-new-toggle" id="AddressNewButton" aria-expanded="false" aria-owns="AddressNewForm"><ls-static-6650332>Add New</ls-static-6650332></button>
+    </p>
+  </header>
+  <div class="grid">
+    <div class="grid__item medium-up--two-thirds medium-up--push-one-sixth">
+      {% comment %}
+        Add address form, hidden by default
+      {% endcomment %}
+      <div id="AddressNewForm" class="form-vertical hide">
+        {% form 'customer_address', customer.new_address %}
+          <h2><ls-static-6141339>Add new address</ls-static-6141339></h2>
+
+          <div class="grid">
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressFirstNameNew"><ls-static-3849183>First Name</ls-static-3849183></label>
+              <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+            </div>
+
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressLastNameNew"><ls-static-5064601>Last NAme</ls-static-5064601></label>
+              <input type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__item">
+              <label for="AddressCompanyNew"><ls-static-4219487>Company</ls-static-4219487></label>
+              <input type="text" id="AddressCompanyNew" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+
+              <label for="AddressAddress1New"><ls-static-3085430>Street Address</ls-static-3085430></label>
+              <input type="text" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1">
+
+              <label for="AddressAddress2New"><ls-static-1817871>Apt/Suite Number</ls-static-1817871></label>
+              <input type="text" id="AddressAddress2New" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2">
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressCityNew"><ls-static-5986122>{City</ls-static-5986122></label>
+              <input type="text" id="AddressCityNew" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+            </div>
+
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressCountryNew"><ls-static-1899009>Country</ls-static-1899009></label>
+              <select id="AddressCountryNew" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+            </div>
+          </div>
+
+          <div id="AddressProvinceContainerNew" style="display:none">
+            <label for="AddressProvinceNew"><ls-static-6774181>State</ls-static-6774181></label>
+            <select id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+          </div>
+
+          <label for="AddressZipNew"><ls-static-6789985>Zip Code</ls-static-6789985></label>
+          <input type="text" id="AddressZipNew" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code">
+
+          <label for="AddressPhoneNew"><ls-static-6242526>Phone Number</ls-static-6242526></label>
+          <input type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="phone">
+
+          {{ form.set_as_default_checkbox }}
+          <label for="address_default_address_new"><ls-static-7679728>Set Default</ls-static-7679728></label>
+
+          <div><input type="submit" class="btn" value="&lt;ls-static-9008107&gt;Add&lt;/ls-static-9008107&gt;"></div>
+          <div><button type="button" class="text-link address-new-toggle"><ls-static-8352398>Cancel</ls-static-8352398></button></div>
+
+        {% endform %}
+        <hr>
+      </div>
+
+      {% comment %}
+        List all customer addresses with a unique edit form.
+        Also add pagination in case they have a large number of addresses
+      {% endcomment %}
+      <ul>
+        {% for address in customer.addresses %}
+          <li>
+            <div class="address text-center">
+              {% if address == customer.default_address %}
+                <h2 class="h4"><ls-static-1191392>Default</ls-static-1191392></h2>
+              {% endif %}
+
+              {{ address | format_address }}
+
+              <ul class="list--inline">
+                <li>
+                  <button
+                    id="EditFormButton_{{ address.id }}"
+                    type="button"
+                    class="btn btn--small address-edit-toggle"
+                    data-form-id="{{ address.id }}"
+                    aria-owns="EditAddress_{{ address.id }}"
+                    aria-expanded="false"
+                  >
+                    <ls-static-6031598>Edit</ls-static-6031598>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="btn btn--secondary btn--small address-delete"
+                    data-target="{{ address.url }}"
+                    data-confirm-message="Confirm"
+                  >
+                    <ls-static-2251032>Delete</ls-static-2251032>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div id="EditAddress_{{ address.id }}" class="form-vertical hide">
+              {% form 'customer_address', address %}
+
+                <h2><ls-static-5451413>Edit Address</ls-static-5451413></h2>
+
+                <div class="grid">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="AddressFirstName_{{ form.id }}"><ls-static-9739496>First Name</ls-static-9739496></label>
+                    <input type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+                  </div>
+
+                  <div class="grid__item medium-up--one-half">
+                    <label for="AddressLastName_{{ form.id }}"><ls-static-1155646>Last Name</ls-static-1155646></label>
+                    <input type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+                  </div>
+                </div>
+
+                <label for="AddressCompany_{{ form.id }}"><ls-static-9877459>Company</ls-static-9877459></label>
+                <input type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+
+                <label for="AddressAddress1_{{ form.id }}"><ls-static-6837612>Street Address</ls-static-6837612></label>
+                <input type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1">
+
+                <label for="AddressAddress2_{{ form.id }}"><ls-static-5708372>Apt/Suite Number</ls-static-5708372></label>
+                <input type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2">
+
+                <div class="grid">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="AddressCity_{{ form.id }}"><ls-static-4383614>City</ls-static-4383614></label>
+                    <input type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+                  </div>
+                  <div class="grid__item medium-up--one-half">
+                    <label for="AddressCountry_{{ form.id }}"><ls-static-5280844>Country</ls-static-5280844></label>
+                    <select id="AddressCountry_{{ form.id }}" class="address-country-option" data-form-id="{{ form.id }}" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+                  </div>
+                </div>
+
+                <div id="AddressProvinceContainer_{{ form.id }}" style="display:none">
+                  <label for="AddressProvince_{{ form.id }}"><ls-static-6480586>State</ls-static-6480586></label>
+                  <select id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+                </div>
+
+                <div class="grid">
+                  <div class="grid__item">
+                    <label for="AddressZip_{{ form.id }}"><ls-static-3671658>Zip Code</ls-static-3671658></label>
+                    <input type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code">
+                  </div>
+
+                  <div class="grid__item">
+                    <label for="AddressPhone_{{ form.id }}"><ls-static-4288951>Phone</ls-static-4288951></label>
+                    <input type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}" autocomplete="phone">
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  {{ form.set_as_default_checkbox }}
+                  <label for="address_default_address_{{ form.id }}"><ls-static-9670044>Set Default</ls-static-9670044></label>
+
+                  <div><input type="submit" class="btn" value="&lt;ls-static-4189457&gt;Update&lt;/ls-static-4189457&gt;"></div>
+                  <div><button type="button" class="text-link address-edit-toggle" data-form-id="{{ form.id }}"><ls-static-3036227>Cancel</ls-static-3036227></button></div>
+                </div>
+
+              {% endform %}
+              <hr>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+
+      {%- if paginate.pages > 1 -%}
+        {% include 'pagination', paginate: paginate %}
+      {%- endif -%}
+    </div>
+  </div>
+
+</div>
+{% endpaginate %}

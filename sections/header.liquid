@@ -1,0 +1,77 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Header -->
+  <header>
+    <div class="container header-top">
+      <a href="/" class="logo">
+        <img src="{{ 'logo.png' | asset_url }}" alt="logo">
+      </a>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="mobile-group">
+        <nav>
+          <ul class="header-menu">
+            {% for link in linklists[section.settings.main_nav].links %}
+              <li class="{% if link.active %}active{% endif %} {% if link.links.size > 0 %}has-child-menu{% endif %}"><a href= "{{ link.url }}">{% include 'LS_83195002989_nav_title', item: link %}{{ LS_83195002989_link_title  }}</a>
+                {% if link.links.size > 0 %}
+                  <ul>
+                    {% for child_link in link.links %}
+                      <li>
+                        <a href="{{ child_link.url }}">{% include 'LS_83195002989_nav_title', item: child_link %}{{ LS_83195002989_link_title  }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+        <div class="user">
+          <a href="/account">
+            
+          </a>
+        </div>
+      </div>
+      <div class="cart">
+        <a href="/cart">
+          <span class="icon"></span>
+        </a>
+        <span class="product-number">{{ cart.item_count }}</span>
+      </div>
+    </div>
+    <div class="header-banner">
+      <div class="container">
+        <div class="title">{% capture LS_locales_settings_key %}{{ section.id }}.banner_header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.banner_header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</div>
+        <div class="text">
+          {% capture LS_locales_settings_key %}{{ section.id }}.banner_Text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.banner_Text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- \Header -->
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+         "type": "link_list",
+         "id": "main_nav",
+         "label": "Main navigation"
+      },
+      {
+         "type": "text",
+         "id": "banner_header",
+         "label": "Banner Header"
+      },
+      {
+         "type": "text",
+         "id": "banner_Text",
+         "label": "Banner Text"
+      }
+    ]
+  }
+{% endschema %}

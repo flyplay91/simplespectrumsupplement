@@ -1,0 +1,19 @@
+{%- include 'LS_83195002989_global' -%}
+{% paginate collection.products by 2 %}
+  <h1>{% if collection.handle == 'all' or collection == blank %}{% include 'LS_83195002989_locales', LS_locales_item: 'custom_variables.product_page_title',   %}{% if LS_83195002989_locales_value == blank %}{{ 'custom_variables.product_page_title' | t }}{% else %}{{ LS_83195002989_locales_value  }}{% endif %}{% else %}{% include 'LS_83195002989_title', item: collection %}{{ LS_83195002989_item_title }}{% endif %}</h1>
+  {% for product in collection.products %}
+    <div>
+      <a href="{{ product.url | within: collection }}">{% include 'LS_83195002989_title', item: product %}{{ LS_83195002989_item_title  }}</a>
+      {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: product.price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ product.price | money }}{% endif %}
+      {% unless product.available %}<br><strong><ls-static-3083389>sold out</ls-static-3083389></strong>{% endunless %}
+      <a href="{{ product.url | within: collection }}">
+        <img src="{% comment ls-rpl %}{{ product.featured_image.src | img_url: 'large' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: product.featured_image.src, img_url: 'large' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}" alt="{% comment ls-rpl %}{{ product.featured_image.alt | escape }}{% endcomment %}{%- capture LS_ALT -%}{%- render "ls-alt", image: product.featured_image -%}{%- endcapture -%}{{ LS_ALT | escape }}{% comment /ls-rpl %}{% endcomment %}">
+      </a>
+    </div>
+  {% else %}
+    <p><ls-static-1639682>no matches</ls-static-1639682></p>
+  {% endfor %}
+  {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+{% endpaginate %}
+
+{% comment %}{% for product in collection.products %}{% include 'LS_83195002989_product_obj', product: product %}{% endfor %}{% endcomment %}

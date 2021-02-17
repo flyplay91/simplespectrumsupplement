@@ -1,0 +1,47 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'site-map.scss.css' | asset_url | stylesheet_tag }}
+  <!-- Site Map -->
+  <section class="site-map">
+    <div class="container">
+      <h1><ls-static-1842322>Site Map</ls-static-1842322></h1>
+      <ul>
+        {% for link in linklists.main-menu-new.links %}
+        <li {% if link.links.size > 0 %}class="has-child-menu"{% endif %}><a href= "{{ link.url }}">{% include 'LS_83195002989_nav_title', item: link %}{{ LS_83195002989_link_title  }}</a>
+        {% if link.links.size > 0 %}
+          <ul>
+          {% for child_link in link.links %}
+            <li>
+              <a href="{{ child_link.url }}">{% include 'LS_83195002989_nav_title', item: child_link %}{{ LS_83195002989_link_title  }}</a>
+            </li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </section>
+  <!-- \Site Map -->
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <div class="container">
+      <h2><ls-static-7859274>Subscribe to the</ls-static-7859274> <span class="bold"><ls-static-6613178>Simple Digest</ls-static-6613178></span></h2>
+      <p>
+        <ls-static-5023004>We’ll send you tips and resources as well as sales and promotions!</ls-static-5023004>
+      </p>
+      {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="form--success">{% include 'LS_83195002989_locales', LS_locales_item: 'general.newsletter_form.confirmation',   %}{% if LS_83195002989_locales_value == blank %}{{ 'general.newsletter_form.confirmation' | t }}{% else %}{{ LS_83195002989_locales_value  }}{% endif %}</p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="contact[email]" placeholder="&lt;ls-static-8124741&gt;Enter your email address&lt;/ls-static-8124741&gt;">
+        <button type="submit" class="btn blue-btn"><ls-static-5222956>sign me up</ls-static-5222956></button>
+      {% endif %}
+      {% endform %}
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+{{ 'site-map.js' | asset_url | script_tag }}

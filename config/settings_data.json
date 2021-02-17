@@ -1,0 +1,781 @@
+{
+  "current": {
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#197bbd",
+    "checkout_error_color": "#e32c2b",
+    "sections": {
+      "top-bar": {
+        "type": "top-bar",
+        "settings": {}
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "main_nav": "main-menu-new",
+          "banner_header": "It’s Simple",
+          "banner_Text": "Only the highest quality vitamins & minerals in the most bioavailable forms & nothing else!"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "contact-header": "Contact Us",
+          "contact-text": "For questions or comments, please contact us at:<br>\n\t\t\t\t\t<a href=\"mailto:info@simplespectrumsupplement.com%22\">info@simplespectrumsupplement.com<\/a><br>\n\t\t\t\t\t<a href=\"tel:(800)%20264-2476\">(800) 264-2476<\/a>",
+          "why-header": "Why Simple",
+          "why-text": "It’s simple. The highest quality vitamins, minerals and other nutrients in the best forms. Click here to learn more.",
+          "menu-header": "Explore",
+          "menu-nav": "footer-menu-1",
+          "menu-2-header": "Useful Links",
+          "menu-2-nav": "footer-2",
+          "copyright_text": "© 2020, Simple Spectrum Supplement",
+          "disclaimer_text": "These statements haven't been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease."
+        }
+      },
+      "1593914155504": {
+        "type": "home-hero",
+        "blocks": {
+          "1593914159122": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/hero-1_d42f5817-5aeb-41d5-9110-531f1577851b.jpg",
+              "header": "Nutritional Support Designed <span class=\"bold\">For All<\/span>",
+              "text": "Doctor formulated and allergen free, our supplement is designed to provide the nutritional needs of the developing nervous system with extra support for individuals with autism by addressing potential dietary deficits.",
+              "link": "shopify:\/\/products\/simple-spectrum-nutritional-support-supplement",
+              "link_text": "shop now"
+            }
+          },
+          "1593914193645": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/hero-2_aa065935-1a50-438a-86f9-ab23e6298efc.jpg",
+              "header": "Simply Good Ingredients for <span class=\"bold\">Developing Brains<\/span>",
+              "text": "Each batch of Simple Spectrum is third party tested to insure that it is free of toxins and the bad stuff. Our formula is made up of only safe ingredients proven to support enhanced neurological function in children.",
+              "link": "shopify:\/\/products\/simple-spectrum-nutritional-support-supplement",
+              "link_text": "shop now"
+            }
+          },
+          "1593914224205": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/hero-3_068c91ff-7e82-41c2-b1d9-7f83e390bb86.jpg",
+              "header": "The <span class=\"bold\">Added Nutritional<\/span> Support You Need",
+              "text": "Simple Spectrum provides a complete supplement with compounds in their bioavailable forms. That means more of the good stuff the body can process and use.",
+              "link": "shopify:\/\/products\/simple-spectrum-nutritional-support-supplement",
+              "link_text": "shop now"
+            }
+          },
+          "1593914253806": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/hero-4.jpg",
+              "header": "Supporting Children With <span class=\"bold\">Special Needs<\/span>",
+              "text": "Our founders are passionate about helping kids with special needs. That is why they have worked to identify natural ingredients to improve an individual’s quality of life that are safe for all types of diets and sensitivities.",
+              "link": "shopify:\/\/products\/simple-spectrum-nutritional-support-supplement",
+              "link_text": "shop now"
+            }
+          }
+        },
+        "block_order": [
+          "1593914159122",
+          "1593914193645",
+          "1593914224205",
+          "1593914253806"
+        ],
+        "settings": {}
+      },
+      "1593914294607": {
+        "type": "features",
+        "blocks": {
+          "1593914302137": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/feature-1.png",
+              "header": "Options to Help You Save",
+              "text": "Bundle up or subscribe for extra savings. <a href=\"https:\/\/simplespectrumsupplement.com\/products\/simple-spectrum-nutritional-support-supplement\"><b>Shop Now<b><\/b><\/b><\/a>"
+            }
+          },
+          "1593914333325": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/feature-2.png",
+              "header": "Community Connection",
+              "text": "Join with our Facebook Group for tips & support. <a href=\"https:\/\/www.facebook.com\/groups\/179675556661778\"><b>Join Now<\/b><\/a>"
+            }
+          },
+          "1593914357107": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/feature-3.png",
+              "header": "Safe for Sensitive Tummies",
+              "text": "Our formula is safe for all types of diets and sensitivities. <a href=\"https:\/\/simplespectrumsupplement.com\/pages\/formula\"><b>Learn More<\/b><\/a>"
+            }
+          }
+        },
+        "block_order": [
+          "1593914302137",
+          "1593914333325",
+          "1593914357107"
+        ],
+        "settings": {}
+      },
+      "1593916059986": {
+        "type": "testimonials",
+        "blocks": {
+          "1593916114663": {
+            "type": "image_picker",
+            "settings": {
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Review__3_Year_Old_Son.mp4?v=1594923174",
+              "video_thumbnail": "shopify:\/\/shop_images\/thumbnail.jpeg"
+            }
+          },
+          "1593916141833": {
+            "type": "image_picker",
+            "settings": {
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Review__Aussie_Autism_Family.mp4?v=1594924421",
+              "video_thumbnail": "shopify:\/\/shop_images\/thumbnail_1.jpeg"
+            }
+          },
+          "1600356287484": {
+            "type": "image_picker",
+            "settings": {
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Review__Day___Night_Difference.mp4",
+              "video_thumbnail": "shopify:\/\/shop_images\/testimonial-1_b9b2f903-0b4f-4f0f-a101-902551d39d86.png"
+            }
+          },
+          "1600356301268": {
+            "type": "image_picker",
+            "settings": {
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Review__From_Australia.mp4",
+              "video_thumbnail": "shopify:\/\/shop_images\/testimonial-2_595723ef-267e-4b1b-8fcc-8da19b9bb34f.png"
+            }
+          },
+          "1600356313334": {
+            "type": "image_picker",
+            "settings": {
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/ReviewImprovementinExpressiveLanguage.mp4",
+              "video_thumbnail": "shopify:\/\/shop_images\/testi-3_8eef3254-a211-4e5f-95df-73c4d7d6d438.png"
+            }
+          },
+          "1600356329523": {
+            "type": "image_picker",
+            "settings": {
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Review__Jacqueline_Laurita_2.mp4",
+              "video_thumbnail": "shopify:\/\/shop_images\/testi-4_copy.png"
+            }
+          }
+        },
+        "block_order": [
+          "1593916114663",
+          "1593916141833",
+          "1600356287484",
+          "1600356301268",
+          "1600356313334",
+          "1600356329523"
+        ],
+        "settings": {
+          "header": "Simple Stories, <span class=\"bold\">Big Results<\/span>",
+          "body": "Finding nutritional options that you can trust for your children is so important. These parents trust Simple Spectrum; find out why:",
+          "t_img_1": "shopify:\/\/shop_images\/testimonial-1_285f2bfb-ee55-48a1-a31e-6961ee7bc558.jpg",
+          "t_text_1": "Becky F.",
+          "t_img_2": "shopify:\/\/shop_images\/testimonial-2_d450d982-8c73-4199-ba11-f9b84778184b.jpg",
+          "t_text_2": "Roylyn T.",
+          "t_img_3": "shopify:\/\/shop_images\/testimonial-3.jpg",
+          "t_text_3": "Cristina T.",
+          "t_img_4": "shopify:\/\/shop_images\/testimonial-4.jpg",
+          "t_text_4": "Julie, Montana"
+        }
+      },
+      "1593916811450": {
+        "type": "free-from",
+        "blocks": {
+          "1593916824644": {
+            "type": "text",
+            "settings": {
+              "text": "Gluten"
+            }
+          },
+          "1593916829603": {
+            "type": "text",
+            "settings": {
+              "text": "GMOs"
+            }
+          },
+          "1593916835403": {
+            "type": "text",
+            "settings": {
+              "text": "Soy"
+            }
+          },
+          "1593916841468": {
+            "type": "text",
+            "settings": {
+              "text": "Added Sugar"
+            }
+          },
+          "1593916850118": {
+            "type": "text",
+            "settings": {
+              "text": "Artificial Ingredients"
+            }
+          },
+          "1593916857102": {
+            "type": "text",
+            "settings": {
+              "text": "Casein"
+            }
+          },
+          "1593916862098": {
+            "type": "text",
+            "settings": {
+              "text": "Nuts"
+            }
+          },
+          "1593916869183": {
+            "type": "text",
+            "settings": {
+              "text": "Dairy"
+            }
+          },
+          "1593916873771": {
+            "type": "text",
+            "settings": {
+              "text": "Preservatives"
+            }
+          },
+          "1593916879606": {
+            "type": "text",
+            "settings": {
+              "text": "Artificial Flavor"
+            }
+          }
+        },
+        "block_order": [
+          "1593916824644",
+          "1593916829603",
+          "1593916835403",
+          "1593916841468",
+          "1593916850118",
+          "1593916857102",
+          "1593916862098",
+          "1593916869183",
+          "1593916873771",
+          "1593916879606"
+        ],
+        "settings": {
+          "header": "Simple Spectrum Nutritional Supplement is <span class=\"bold\">Always Free From<\/span>"
+        }
+      },
+      "1593917575934": {
+        "type": "research",
+        "blocks": {
+          "1593917610702": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/passion-meets-research_dbf47377-56ff-4491-9779-4c47a3540af7.png"
+            }
+          }
+        },
+        "block_order": [
+          "1593917610702"
+        ],
+        "settings": {
+          "header": "Passion Meets <span class=\"bold\">Research<\/span>",
+          "body": "Studies show that the developing brains of children have specific nutritional needs, which is why we designed\n\t\t\t\t\tSimple Spectrum.",
+          "points": "<li>Adequate dietary intake of nutrients needed for neurological development and function<\/li>\n\t\t\t\t\t<li>Compounds in their bioavailable forms<\/li>\n\t\t\t\t\t<li>Safe for diets limiting gastrointestinal irritation<\/li>\n\t\t\t\t\t<li>Supports enhanced neurological function in children<\/li>",
+          "button_text": "learn more",
+          "button_url": "shopify:\/\/pages\/research"
+        }
+      },
+      "1593918111938": {
+        "type": "what-is-inside",
+        "blocks": {
+          "1593918127973": {
+            "type": "text",
+            "settings": {
+              "header": "Acetyl-l-carnitine",
+              "text": "Drives healthy fats to high-need brain cells.",
+              "color": "yellow"
+            }
+          },
+          "1593918173111": {
+            "type": "text",
+            "settings": {
+              "header": "Choline",
+              "text": "Boosts brain chemicals that form thoughts and memories.",
+              "color": "blue"
+            }
+          },
+          "1593918185381": {
+            "type": "text",
+            "settings": {
+              "header": "Coenzyme Q10",
+              "text": "Supports an antioxidant that amps up brain energy production and promotes calm behavior.",
+              "color": "red"
+            }
+          },
+          "1593918199685": {
+            "type": "text",
+            "settings": {
+              "header": "Inositol",
+              "text": "Supports mood via serotonin, our happy brain hormone.",
+              "color": "yellow"
+            }
+          },
+          "1595222680229": {
+            "type": "text",
+            "settings": {
+              "header": "MSM",
+              "text": "Helps the body clear waste products and aid its natural inflammation support systems.",
+              "color": "blue"
+            }
+          },
+          "1595222719643": {
+            "type": "text",
+            "settings": {
+              "header": "MTHF",
+              "text": "Promotes healthy DNA and nervous system development.",
+              "color": "red"
+            }
+          },
+          "1595222728043": {
+            "type": "text",
+            "settings": {
+              "header": "NAC",
+              "text": "Boosts antioxidant levels to keep nervous system running smoothly.",
+              "color": "yellow"
+            }
+          },
+          "1595222745659": {
+            "type": "text",
+            "settings": {
+              "header": "Larch Arabinogalactan",
+              "text": "(Prebiotic) Supports healthy gut bacteria.",
+              "color": "blue"
+            }
+          },
+          "1595222763989": {
+            "type": "text",
+            "settings": {
+              "header": "Bioperine",
+              "text": "Aides absorption.",
+              "color": "red"
+            }
+          },
+          "1595222779414": {
+            "type": "text",
+            "settings": {
+              "header": "HydroCurc",
+              "text": "(Turmeric\/Curcumin) Supports proper inflammatory response.",
+              "color": "yellow"
+            }
+          }
+        },
+        "block_order": [
+          "1593918127973",
+          "1593918173111",
+          "1593918185381",
+          "1593918199685",
+          "1595222680229",
+          "1595222719643",
+          "1595222728043",
+          "1595222745659",
+          "1595222763989",
+          "1595222779414"
+        ],
+        "settings": {
+          "header": "What’s Inside <span class=\"bold\">Simple Spectrum?<\/span>",
+          "subhead": "<div style=\"width: 100% !important;; text-align: center !important;\">Simple Spectrum is <b>doctor formulated<\/b> with the highest quality vitamins &amp; minerals:<\/div>"
+        }
+      },
+      "1593918742441": {
+        "type": "partnerships",
+        "blocks": {
+          "1593918767990": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/partner-1.jpg",
+              "url": "#"
+            }
+          },
+          "1593918783799": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/partner-2.jpg",
+              "url": "#"
+            }
+          },
+          "1593918792297": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/partner-3.jpg",
+              "url": "#"
+            }
+          },
+          "1593918810069": {
+            "type": "image_picker",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/ElLogo-Text-XParent_1_96b52531-efdd-4fc3-96a8-d309483f95e5.png",
+              "url": "#"
+            }
+          }
+        },
+        "block_order": [
+          "1593918767990",
+          "1593918783799",
+          "1593918792297",
+          "1593918810069"
+        ],
+        "settings": {
+          "header": "Our <span class=\"bold\">Partnerships<\/span>"
+        }
+      },
+      "1593919086542": {
+        "type": "subscribe",
+        "settings": {
+          "header": "Subscribe to the <span class=\"bold\">Simple Digest<\/span>",
+          "text": "We’ll send you tips and resources as well as sales and promotions!"
+        }
+      },
+      "studies": {
+        "type": "studies",
+        "blocks": {
+          "1593997687138": {
+            "type": "text",
+            "settings": {
+              "header": "Study Abstract [copied from the study]",
+              "text": "“This study involved a randomized, controlled, single-blind 12-month treatment study of a comprehensive nutritional and dietary intervention. Participants were 67 children and adults with autism spectrum disorder (ASD) ages 3-58 years from Arizona and 50 nonsibling neurotypical controls of similar age and gender. Treatment began with a special vitamin\/mineral supplement, and additional treatments were added sequentially, including essential fatty acids, Epsom salt baths, carnitine, digestive enzymes, and a “Healthy Gluten-free, Casein-free, Soy-free (HGCSF aka GFCFSF) diet. There was a significant improvement in nonverbal intellectual ability in the treatment group compared to the non-treatment group (+6.7 ± 11 IQ points vs. -0.6 ± 11 IQ points, p = 0.009) based on a blinded clinical assessment. Based on semi-blinded assessment, the treatment group, compared to the non-treatment group, had significantly greater improvement in autism symptoms and developmental age. The treatment group had significantly greater increases in EPA, DHA, carnitine, and vitamins A, B2, B5, B6, B12, folic acid, and Coenzyme Q10. The positive results of this study suggest that a comprehensive nutritional and dietary intervention is effective at improving nutritional status, non-verbal IQ, autism symptoms, and other symptoms in most individuals with ASD. Parents reported that the vitamin\/mineral supplements, essential fatty acids, and HGCSF diet were the most beneficial.\"",
+              "url": "https:\/\/www.mdpi.com\/2072-6643\/10\/3\/369",
+              "link_text": "VIEW THE STUDY",
+              "color": "red"
+            }
+          },
+          "1593997736866": {
+            "type": "text",
+            "settings": {
+              "header": "Effect of a vitamin\/mineral supplement on children and adults with autism",
+              "text": "Conclusions: Oral vitamin\/mineral supplementation is beneficial in improving the nutritional and metabolic status of children with autism, including improvements in methylation, glutathione, oxidative stress, sulfation, ATP, NADH, and NADPH. The supplement group had significantly greater improvements than did the placebo group on the PGI-R Average Change. This suggests that a vitamin\/mineral supplement is a reasonable adjunct therapy to consider for most children and adults with autism.",
+              "url": "https:\/\/www.ncbi.nlm.nih.gov\/pubmed\/22151477",
+              "link_text": "VIEW THE STUDY",
+              "color": "blue"
+            }
+          }
+        },
+        "block_order": [
+          "1593997687138",
+          "1593997736866"
+        ],
+        "settings": {}
+      },
+      "faq": {
+        "type": "faq",
+        "blocks": {
+          "1593999771601": {
+            "type": "text",
+            "settings": {
+              "header": "WHY SIMPLE SPECTRUM SUPPLEMENT?",
+              "text": "It’s simple. The highest quality vitamins, minerals and other nutrients in the most bioavailable forms. Designed to fill the nutritional gaps of our picky eaters. Our nutraceutical is designed to provide the nutritional needs of the developing nervous system with extra support for individuals with autism by addressing potential dietary deficits."
+            }
+          },
+          "1593999792575": {
+            "type": "text",
+            "settings": {
+              "header": "how quickly could one see a difference?",
+              "text": "We recommend taking for 3 months for optimal results but a person with a true nutrient deficit might see a difference even sooner."
+            }
+          },
+          "1593999812028": {
+            "type": "text",
+            "settings": {
+              "header": "can you ship internationally?",
+              "text": "Yes. We love our international customers!"
+            }
+          },
+          "1593999819577": {
+            "type": "text",
+            "settings": {
+              "header": "does this supplement come in a capsule\/pill?",
+              "text": "Due to the fact that many children on the spectrum have sensory issues and\/or trouble swallowing, we designed our Simple Spectrum Supplement to be in a powder form so it can be easily mixed in water or your child’s favorite drink. It can even be added to a soft serve food like yogurt, pudding, or purees."
+            }
+          },
+          "1593999830497": {
+            "type": "text",
+            "settings": {
+              "header": "how does simple spectrum supplement taste?",
+              "text": "We formulated our Simple Spectrum Supplement to be unflavored and easily mixed in water or your child’s favorite drink. Due to the nature of ingredients, it may have a slight “vitamin” taste, but the mild taste is easily masked by juice or diluted in water. You can even mix it in a smoothie, yogurt, or similar food as well."
+            }
+          },
+          "1593999847882": {
+            "type": "text",
+            "settings": {
+              "header": "how many servings are in each bottle?",
+              "text": "Simple Spectrum Supplement has 30 servings based on a 60-90lb child. If your child weighs less than 60lbs, it will have more servings: if your child is more than 90lbs, it will have less. Please see dosage chart for more information"
+            }
+          },
+          "1593999855376": {
+            "type": "text",
+            "settings": {
+              "header": "how long does one bottle last?",
+              "text": "Usually one to two months depending on your child's weight."
+            }
+          },
+          "1593999867568": {
+            "type": "text",
+            "settings": {
+              "header": "the cap on the bottle isn’t secured tightly. should i be concerned?",
+              "text": "Not at all. As long as the clear plastic seal around the outside bottle cap is on, that’s all that matters. The reason our caps aren’t tightened is because we don’t use any glue or chemicals to seal our bottles. Your child’s health and safety is and always will be our #1 priority."
+            }
+          },
+          "1593999881197": {
+            "type": "text",
+            "settings": {
+              "header": "how do i know if the supplement has expired or should be discarded?",
+              "text": "All of our supplement containers have the manufactured date listed on them. Our supplement is effective and safe to use for up to two years after the manufactured date."
+            }
+          },
+          "1593999893992": {
+            "type": "text",
+            "settings": {
+              "header": "can teenagers use take this product",
+              "text": "Yes! Anyone can take this product. Dosage is based on weight."
+            }
+          },
+          "1594614607859": {
+            "type": "text",
+            "settings": {
+              "header": "can anyone take this product",
+              "text": "Absolutely! It’s designed for those with nutrient deficits based on scientific research. If you don’t suspect any deficits we suggest giving them the dosage right under their weight. For example - if they are between 60-90lb dose we would say give them the 30-60lb dose. If you have any further questions or concerns please speak with your pediatrician."
+            }
+          },
+          "1594614632291": {
+            "type": "text",
+            "settings": {
+              "header": "can my child with adhd take this product?",
+              "text": "Yes. If you have concerns, please consult with your pediatrician."
+            }
+          },
+          "1594614659639": {
+            "type": "text",
+            "settings": {
+              "header": "Why is your supplement more expensive than my child's typical gummy vitamin?",
+              "text": "This is a nutraceutical you would typically find in a physician’s office for $100 or more. These are pure vitamins and minerals in the best forms with no additives."
+            }
+          },
+          "1594614720865": {
+            "type": "text",
+            "settings": {
+              "header": "where is it made?",
+              "text": "Our product is formulated right here in the United States."
+            }
+          },
+          "1594614738478": {
+            "type": "text",
+            "settings": {
+              "header": "where are you sold?",
+              "text": "On this website, Amazon.com and clinicians \/ MAPs doctors (Medical Association Of Pediatrics Special Needs) throughout the world."
+            }
+          },
+          "1594614754968": {
+            "type": "text",
+            "settings": {
+              "header": "does this product contain nuts or nuts in the facility",
+              "text": "No."
+            }
+          },
+          "1594614791948": {
+            "type": "text",
+            "settings": {
+              "header": "is this vitamin gluten and casein free?",
+              "text": "Yes, it is free from gluten, casein, soy, GMO’s, milk and milk derivatives, added sugar, artificial colors and flavors, and preservatives. In other words, just the good stuff!"
+            }
+          },
+          "1594614833984": {
+            "type": "text",
+            "settings": {
+              "header": "does this product contain milk?",
+              "text": "No. In fact it is a nutraceutical free of gluten, casein, added sugar, soy, soy, binding agents, artificial colors, preservatives, GMOS and dairy, Only pure vitamins and minerals in the best forms!"
+            }
+          },
+          "1594614862573": {
+            "type": "text",
+            "settings": {
+              "header": "are simple spectrum supplement vegan?",
+              "text": "Yes"
+            }
+          },
+          "1594614885737": {
+            "type": "text",
+            "settings": {
+              "header": "does this product contain a prebiotic?",
+              "text": "Yes! Larch Arabinogalactan helps to increase the number of desirable bacteria in our digestive systems to support a healthy gut!"
+            }
+          },
+          "1594614919036": {
+            "type": "text",
+            "settings": {
+              "header": "Do you third party test and what does that mean?",
+              "text": "Yes! We test every batch to ensure what we say is in your vitamin is actually in your vitamin."
+            }
+          },
+          "1594614955313": {
+            "type": "text",
+            "settings": {
+              "header": "what is cardboard piece in my bottle?",
+              "text": "Simple Spectrum is free of gluten, casein, added sugar, soy, binding agents, artificial colors, preservatives, GMOs and dairy. Since we don’t add preservatives this piece helps keep your product fresh. Please keep it in your bottle."
+            }
+          },
+          "1594615002762": {
+            "type": "text",
+            "settings": {
+              "header": "is it normal to have bright orange urine?",
+              "text": "Important B vitamins in our supplement contain yellow-orange pigments and may give off a mild vitamin smell or taste. These pigments when passed through the body may color the urine."
+            }
+          },
+          "1594615026488": {
+            "type": "text",
+            "settings": {
+              "header": "can you use this supplement with a multivitamin or other supplements?",
+              "text": "We really consider our supplement an all in one, including prebiotic, and don't suggest adding much! If you have any further questions or concerns, we always recommend speaking with your doctor that knows you best."
+            }
+          },
+          "1594615089624": {
+            "type": "text",
+            "settings": {
+              "header": "i'm ordering internationally and\/or using currency that isn't US Dollars. How can I estimate the total amount I will end up paying in my currency?",
+              "text": "The best way to know your currency conversion rate, currency conversion fees, international purchase fees, etc., is to contact your bank, credit card provider or alternate financial institution you'll be using to make your purchase. Since these fees can vary greatly depending on many factors, we aren't able to estimate this on our site for you. Sorry for the inconvenience!"
+            }
+          }
+        },
+        "block_order": [
+          "1593999771601",
+          "1593999792575",
+          "1593999812028",
+          "1593999819577",
+          "1593999830497",
+          "1593999847882",
+          "1593999855376",
+          "1593999867568",
+          "1593999881197",
+          "1593999893992",
+          "1594614607859",
+          "1594614632291",
+          "1594614659639",
+          "1594614720865",
+          "1594614738478",
+          "1594614754968",
+          "1594614791948",
+          "1594614833984",
+          "1594614862573",
+          "1594614885737",
+          "1594614919036",
+          "1594614955313",
+          "1594615002762",
+          "1594615026488",
+          "1594615089624"
+        ],
+        "settings": {}
+      },
+      "1600355501424": {
+        "type": "get-to-know",
+        "blocks": {
+          "1600355608225": {
+            "type": "text",
+            "settings": {
+              "tabTitle": "About Us",
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Simple_Spectrum_Supplement_Educational_Video.mp4",
+              "poster": "shopify:\/\/shop_images\/video-screen_c0714eee-c178-45b1-9d05-d8ae3d2908eb.jpg",
+              "btnText": "",
+              "btnLink": ""
+            }
+          },
+          "1600355631713": {
+            "type": "text",
+            "settings": {
+              "tabTitle": "Jacqueline Laurita",
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/78621864_414171676196821_7776210543366373376_n.mp4?v=1599415707",
+              "poster": "shopify:\/\/shop_images\/Screenshot_2020-09-06_at_2.07.32_PM_293b767a-22cf-4942-9770-2dd783f6e986.png",
+              "btnText": "",
+              "btnLink": ""
+            }
+          },
+          "1600355670651": {
+            "type": "text",
+            "settings": {
+              "tabTitle": "Dr. Shay",
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/IMG_3564.mp4?v=1600140945",
+              "poster": "shopify:\/\/shop_images\/Screenshot_2020-09-06_at_2.09.49_PM.png",
+              "btnText": "More from Dr. Shay",
+              "btnLink": "https:\/\/simplespectrumsupplement.com\/pages\/videos?science=1"
+            }
+          },
+          "1600355695004": {
+            "type": "text",
+            "settings": {
+              "tabTitle": "Insurance Funding",
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Getting_Insurance_To_Cover_Our_Product.mp4",
+              "poster": "shopify:\/\/shop_images\/video-3.jpg",
+              "btnText": "More Details",
+              "btnLink": "shopify:\/\/pages\/insurance-coverage"
+            }
+          },
+          "1600355729960": {
+            "type": "text",
+            "settings": {
+              "tabTitle": "Mission",
+              "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0036\/1820\/9901\/files\/Our_Mission_d3afe7aa-539e-45d7-b9fe-847b4f5496e9.mp4?v=1595475004",
+              "poster": "shopify:\/\/shop_images\/video-4.jpg",
+              "btnText": "",
+              "btnLink": ""
+            }
+          }
+        },
+        "block_order": [
+          "1600355608225",
+          "1600355631713",
+          "1600355670651",
+          "1600355695004",
+          "1600355729960"
+        ],
+        "settings": {
+          "title": "<h2>Get to Know <span class=\"bold\">Simple<\/span>\n<\/h2>",
+          "subhead": "",
+          "lastTabTitle": "Featured",
+          "last1": "shopify:\/\/shop_images\/simplespectrumsupplement_1019845751828561030989134817287088201415244n.jpg",
+          "last1Link": "https:\/\/www.instagram.com\/simplespectrumsupplement\/channel\/?hl=en",
+          "last2": "shopify:\/\/shop_images\/simplespectrumsupplement_851687246239945848303132471640960033455482n.jpg",
+          "last2Link": "https:\/\/www.instagram.com\/simplespectrumsupplement\/channel\/?hl=en",
+          "last3": "shopify:\/\/shop_images\/simplespectrumsupplement_922688611631829384819607359771963752477778n.jpg",
+          "last3Link": "https:\/\/www.instagram.com\/simplespectrumsupplement\/channel\/?hl=en",
+          "last4": "shopify:\/\/shop_images\/simplespectrumsupplement_95021085225583925551555840421162675195564n.jpg",
+          "last4Link": "https:\/\/www.instagram.com\/simplespectrumsupplement\/channel\/?hl=en",
+          "featuredbtn": "WATCH THE VIDEOS",
+          "featuredLink": "https:\/\/www.instagram.com\/simplespectrumsupplement\/channel\/?hl=en"
+        }
+      }
+    },
+    "content_for_index": [
+      "1593914155504",
+      "1593914294607",
+      "1600355501424",
+      "1593916059986",
+      "1593916811450",
+      "1593917575934",
+      "1593918111938",
+      "1593918742441",
+      "1593919086542"
+    ]
+  },
+  "presets": {
+    "Default": {}
+  }
+}

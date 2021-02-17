@@ -1,0 +1,44 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Free from  -->
+  <section class="free-from">
+    <div class="container">
+      <h2>{% capture LS_locales_settings_key %}{{ section.id }}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h2>
+      <ul>
+        {% for block in section.blocks %} 
+        <li>{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.text}}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+<!-- \Free from  -->
+
+{% schema %}
+  {
+    "name": "Free From",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "id": "header",
+        "type": "html",
+        "label": "Header"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Add Text Point",
+        "settings": [
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Free From",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

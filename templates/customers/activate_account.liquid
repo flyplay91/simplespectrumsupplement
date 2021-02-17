@@ -1,0 +1,33 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'account.scss.css' | asset_url | stylesheet_tag }}
+<div class="page-width text-center account-padding">
+  <div class="grid">
+    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
+      <div class="section-header">
+        <h1><ls-static-7961522>Activate Your Account</ls-static-7961522></h1>
+        <p><ls-static-4608347>Please confirm your account below.</ls-static-4608347></p>
+      </div>
+
+      <div class="form-vertical">
+        {% form 'activate_customer_password' %}
+
+          {%- if form.errors -%}
+            <div class="form-message form-message--error">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <label for="CustomerPassword" class="label--hidden"><ls-static-6759717>Password</ls-static-6759717></label>
+          <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="&lt;ls-static-6856421&gt;Enter your password&lt;/ls-static-6856421&gt;">
+
+          <label for="CustomerPasswordConfirmation" class="label--hidden"><ls-static-5423840>Confirm Password</ls-static-5423840></label>
+          <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" placeholder="&lt;ls-static-1409021&gt;Confirm Password&lt;/ls-static-1409021&gt;">
+
+          <input type="submit" class="btn" value="&lt;ls-static-7018544&gt;Submit&lt;/ls-static-7018544&gt;">
+          <div><input type="submit" name="decline" value="&lt;ls-static-5718115&gt;Cancel&lt;/ls-static-5718115&gt;"></div>
+        <input type='hidden' name='customer[tags]' value='ls~{% if cart.attributes.LS_language %}{{ cart.attributes.LS_language }}{% else %}{{ shop.metafields.langshop['lang_default'] }}{% endif %}ls~'/> 
+ {% endform %}
+      </div>
+    </div>
+  </div>
+</div>

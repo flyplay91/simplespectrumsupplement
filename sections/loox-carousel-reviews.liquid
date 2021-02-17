@@ -1,0 +1,78 @@
+{%- include 'LS_83195002989_global' -%}
+<div
+	id="looxCarousel"
+	data-show-more="{% capture LS_locales_settings_key %}{{ section.id }}.show_more{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{section.settings.show_more}}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}"
+	data-max-width="{% capture LS_locales_settings_key %}{{ section.id }}.max_width{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{section.settings.max_width}}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}"
+	data-arrows-color="{% capture LS_locales_settings_key %}{{ section.id }}.arrows_color{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{section.settings.arrows_color}}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}"
+	data-dots-color="{% capture LS_locales_settings_key %}{{ section.id }}.dots_color{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{section.settings.dots_color}}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}"
+	data-button-color="{% capture LS_locales_settings_key %}{{ section.id }}.button_color{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{section.settings.button_color}}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}"
+
+	{% capture LS_locales_settings_key %}{{ section.id }}.product_handle{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}
+{%  if section.settings.product_handle   %}data-product-ids="{{ all_products[section.settings.product_handle].id }}"{% endif %}
+	{% capture LS_locales_settings_key %}{{ section.id }}.only_photos{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}
+{%  if section.settings.only_photos   %}data-mode="img"{% endif %}
+    {% capture LS_locales_settings_key %}{{ section.id }}.use_widget_font{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}
+{%  if section.settings.use_widget_font   %}data-use-widget-font="true"{% endif %}
+
+></div>
+{% schema %}
+{
+	"name": "Reviews - Carousel",
+	"class": "index-section",
+	"settings": [
+		{
+			"type": "range",
+			"id": "max_width",
+			"min": 480,
+			"max": 1920,
+			"step": 40,
+			"unit": "px",
+			"label": "Maximum width",
+			"default": 1920
+		},
+		{
+			"id": "arrows_color",
+			"type": "color",
+			"label": "Arrows color"
+		},
+		{
+			"id": "dots_color",
+			"type": "color",
+			"label": "Dots color"
+		},
+		{
+			"id": "button_color",
+			"type": "color",
+			"label": "Button color"
+		},
+		{
+			"id": "show_more",
+			"type": "checkbox",
+			"label": "Display \"Show more\" button",
+			"default": true
+		},
+		{
+
+			"id": "only_photos",
+			"type": "checkbox",
+			"label": "Display only reviews with photos",
+			"default": false
+		},
+		{
+			"id": "use_widget_font",
+			"type": "checkbox",
+			"label": "Use widget's font for text reviews",
+			"default": false
+		},
+		{
+			"type": "product",
+			"id": "product_handle",
+			"label": "Use all of this product's reviews:"
+		}
+	],
+	"presets": [{
+		"name": "Reviews - Carousel",
+		"category": "Loox"
+	}]
+}
+{% endschema %}

@@ -1,0 +1,65 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- What's inside -->
+  <section class="what-is-inside">
+    <div class="container">
+      <h2>{% capture LS_locales_settings_key %}{{ section.id }}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h2>
+      <p>{% capture LS_locales_settings_key %}{{ section.id }}.subhead{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.subhead }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</p>
+      <div class="slider-inside">
+        {% for block in section.blocks %} 
+        <div class="slide {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.color{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.color }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}-border">
+          <h4>{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h4>
+          <p>
+            {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+<!-- \What's inside -->
+
+  {% schema %}
+  {
+    "name": "What is inside",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "id": "header",
+        "type": "html",
+        "label": "Header"
+      },
+	  {
+            "id": "subhead",
+            "type": "html",
+            "label": "Sub-Header"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Add Text Block",
+        "settings": [
+          {
+            "id": "header",
+            "type": "html",
+            "label": "Header"
+          },
+          {
+            "id": "text",
+            "type": "html",
+            "label": "Text"
+          },
+          {
+            "id": "color",
+            "type": "text",
+            "label": "Bottom Color"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "What is inside",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

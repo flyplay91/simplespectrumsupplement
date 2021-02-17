@@ -1,0 +1,50 @@
+{%- include 'LS_83195002989_global' -%}
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <h2><ls-static-4506154>Your Questions,</ls-static-4506154> <span class="bold"><ls-static-8443231>Answered</ls-static-8443231></span></h2>
+      <p>
+        <ls-static-1772214>If you don’t see your question answered below please contact us at</ls-static-1772214> <a href="mailto:help@simplespectrumsupplement.com"><ls-static-9288043>help@simplespectrum-supplement.com</ls-static-9288043></a>
+      </p>
+
+      <div class="dropdown-list">
+        {% for block in section.blocks %}
+        <div class="dropdown-item">
+          <div class="title">
+            {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+          </div>
+          <div class="text">
+            {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- \FAQ Section -->
+
+  {% schema %}
+  {
+    "name": "FAQs",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Add FAQ",
+        "settings": [
+          {
+            "id": "header",
+            "type": "html",
+            "label": "Header"
+          },
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

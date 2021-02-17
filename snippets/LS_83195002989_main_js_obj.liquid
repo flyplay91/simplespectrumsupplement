@@ -1,0 +1,102 @@
+
+        <script>
+          (function (window) {
+
+            var moneyFormat = '{% raw %}${{amount}}{% endraw %}';
+
+            function formatMoney(cents, format) {
+              if (typeof cents === 'string') {
+                cents = cents.replace('.', '');
+              }
+
+              var value = '';
+              var placeholderRegex = /{% raw %}{{\s*(\w+)\s*}}{% endraw %}/;
+              var formatString = format || moneyFormat;
+
+              function formatWithDelimiters(number, precision, thousands, decimal) {
+                thousands = thousands || ',';
+                decimal = decimal || '.';
+
+                if (isNaN(number) || number === null) {
+                  return 0;
+                }
+
+                number = (number / 100.0).toFixed(precision);
+
+                var parts = number.split('.');
+                var dollarsAmount = parts[0].replace(
+                  /(\d)(?=(\d\d\d)+(?!\d))/g,
+                  '$1' + thousands
+                );
+                var centsAmount = parts[1] ? decimal + parts[1] : '';
+
+                return dollarsAmount + centsAmount;
+              }
+
+              switch (formatString.match(placeholderRegex)[1]) {
+                case 'amount':
+                  value = formatWithDelimiters(cents, 2);
+                  break;
+                case 'amount_no_decimals':
+                  value = formatWithDelimiters(cents, 0);
+                  break;
+                case 'amount_with_comma_separator':
+                  value = formatWithDelimiters(cents, 2, '.', ',');
+                  break;
+                case 'amount_no_decimals_with_comma_separator':
+                  value = formatWithDelimiters(cents, 0, '.', ',');
+                  break;
+                case 'amount_no_decimals_with_space_separator':
+                  value = formatWithDelimiters(cents, 0, ' ');
+                  break;
+                case 'amount_with_apostrophe_separator':
+                  value = formatWithDelimiters(cents, 2, "'");
+                  break;
+              }
+
+              return formatString.replace(placeholderRegex, value);
+            }
+
+            var LS = {
+              localization: {
+                formatMoney: function (cents, format) {
+                  if (typeof LangShopSDK !== "undefined") {
+                    return LangShopSDK.formatMoney(cents, format);
+                  }
+
+                  if (typeof Shopify !== "undefined" && typeof Shopify.formatMoney === "function") {
+                    return Shopify.formatMoney(cents, format)
+                  }
+
+                  return formatMoney(cents, format);
+                },
+
+                variable: function (varName, defaultVal) {
+                  return defaultVal;
+                }
+              },
+              product: {
+                push: function (product, meta) {
+
+                  if (!(product && product.hasOwnProperty('handle'))) {
+                    return;
+                  }
+
+                  this[product.handle] = {
+                    original: product,
+                    translated: product,
+                    locale: function () {
+                      return this.translated;
+                    }
+                  };
+                }
+              }
+            };
+
+            window.LS = LS;
+
+          })(window);
+
+        </script>
+
+        

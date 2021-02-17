@@ -1,0 +1,302 @@
+{%- include 'LS_83195002989_global' -%}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+"@id": {{ canonical_url | json }},
+  "name": {% include 'LS_83195002989_title', item: product %}{{ LS_83195002989_item_title | json   }},
+  "url": {{ shop.url | append: product.url | json }},
+  {%- if product.featured_image -%}
+    {%- assign image_size = product.featured_image.width | append: 'x' -%}
+    "image": [
+      {% comment ls-rpl %}{{ product.featured_image.src | img_url: image_size | prepend: "https:" | json }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: product.featured_image.src, img_url: image_size -%}{%- endcapture -%}{{ LS_IMG_URL | prepend: "https:" | json }}{% comment /ls-rpl %}{% endcomment %}
+    ],
+  {%- endif -%}
+  "description": {% include 'LS_83195002989_description', item: product %}{{ LS_83195002989_item_desc | strip_html | json   }},
+  {%- if current_variant.sku != blank -%}
+    "sku": {{ current_variant.sku | json }},
+  {%- endif -%}
+  "brand": {
+    "@type": "Thing",
+    "name": {{ product.vendor | json }}
+  },
+  "offers": [
+    {%- for variant in product.variants -%}{% if variant.sku != 'SKU-SSS-006' %}
+        {
+          "@type" : "Offer",
+          {%- if variant.sku != blank -%}
+            "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "url" : {{ shop.url | append: variant.url | json }}
+        }{% unless forloop.last or variant.sku == 'SKU-SSS-004' %},{% endunless %}{% endif %}{%- endfor -%}
+  ]
+}
+</script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+{{ 'pdp.scss.css' | asset_url | stylesheet_tag }}
+
+  <!-- Product -->
+  <section class="product">
+    <div class="container">
+      <h1>{% include 'LS_83195002989_title', item: product %}{{ LS_83195002989_item_title  }}</h1>
+      <div class="product-image">
+        {% for image in product.images limit:1 %}
+           <img src="{% comment ls-rpl %}{{ image.src | product_img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: image.src, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}">
+        {% endfor %}
+      </div>
+      <p>
+        <ls-static-1794072>Our supplement is designed to provide the nutritional needs of the developing nervous system with extra support for individuals with autism by addressing potential dietary deficits.</ls-static-1794072>
+      </p>
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+      <div class="selection">
+        <div class="select">
+          {% for variant in product.variants limit: 1 %}
+            {% if variant.available %}
+              <div class="active" data-id="{{ variant.id }}">{{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money_with_currency }}{% endif %}</div>
+            {% endif %}
+          {% endfor %}
+          <ul>
+            {% assign count = 0 %}
+            {% for variant in product.variants %}
+              {% assign count = count | plus: 1 %}
+              {% if variant.available and count > 1 and variant.id != 32038355173485 %}
+                <li data-id="{{ variant.id }}">{{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money_with_currency }}{% endif %}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <select name="id" id="productSelect" style="display:none;">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              <option value="{{ variant.id }}">
+                {{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money_with_currency }}{% endif %}
+              </option>
+            {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} <ls-static-8734469>- sold out</ls-static-8734469>
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <div class="number">
+          <input type="number" value="1" min="1" name="quantity">
+        </div>
+      </div>
+      <div class="ro_widget"></div>
+      {% include 'LS_83195002989_options', product: product %}
+<button type="submit" name="add" id="AddToCart" class="btn yellow-btn addtocart"><ls-static-3987961>add to cart</ls-static-3987961></button>
+    </form>
+    </div>
+  </section>
+  <!-- \Product -->
+
+  <!-- Bundle and Save -->
+  <section class="bundle-save">
+    <div class="container">
+      <h2><ls-static-4084564>Bundle + Save</ls-static-4084564></h2>
+      <p>
+        <ls-static-9899996>Our supplement is designed to provide the nutritional needs of the developing nervous system with extra support for individuals with autism by addressing potential dietary deficits.</ls-static-9899996>
+      </p>
+    </div>
+
+    <div class="products">
+      <div class="product-item">
+        <div class="product-image">
+          <img src="{{ 'product.jpg' | asset_url }}" alt="">
+        </div>
+
+        <h3><ls-static-1858754>Buy One</ls-static-1858754></h3>
+        <span class="servings"><ls-static-5201311>30 servings</ls-static-5201311></span>
+        <span class="savings"></span>
+        <span class="price">$49.99</span>
+        <button class="btn yellow-btn purchase-btn one-bottle" data-id="31811981443181"><ls-static-1731080>add to cart</ls-static-1731080></button>
+      </div>
+
+      <div class="product-item popular">
+        <div class="product-image">
+          <img src="{{ 'two.png' | asset_url }}" alt="">
+        </div>
+
+        <h3><ls-static-3060933>Buy Two</ls-static-3060933></h3>
+        <span class="servings"><ls-static-3957739>60 servings</ls-static-3957739></span>
+        <span class="savings"><ls-static-5349885>10% savings</ls-static-5349885></span>
+        <span class="price">$89.99</span>
+        <button class="btn yellow-btn purchase-btn two-bottle" data-id="31811981475949"><ls-static-2890774>add to cart</ls-static-2890774></button>
+      </div>
+
+      <div class="product-item">
+        <div class="product-image">
+          <img src="{{ 'four.png' | asset_url }}" alt="">
+        </div>
+
+        <h3><ls-static-4816395>Buy Four</ls-static-4816395></h3>
+        <span class="servings"><ls-static-7062202>120 servings</ls-static-7062202></span>
+        <span class="savings"><ls-static-9673638>15% savings</ls-static-9673638></span>
+        <span class="price">$169.99</span>
+        <button class="btn yellow-btn purchase-btn four-bottle" data-id="31811981508717"><ls-static-7113938>add to cart</ls-static-7113938></button>
+      </div>
+    </div>
+  </section>
+  <!-- \Bundle and Save -->
+
+  <!-- Free from  -->
+  <section class="free-from">
+    <div class="container">
+      <h2><ls-static-7529247>Simple Spectrum Nutritional Supplement is</ls-static-7529247> <span class="bold"><ls-static-7192286>Always Free From</ls-static-7192286></span></h2>
+      <ul>
+        <li><ls-static-8449028>Gluten</ls-static-8449028></li>
+        <li><ls-static-2404520>GMOs</ls-static-2404520></li>
+        <li><ls-static-5399111>Soy</ls-static-5399111></li>
+        <li><ls-static-7091241>Added Sugar</ls-static-7091241></li>
+        <li><ls-static-1389384>Artificial Ingredients</ls-static-1389384></li>
+        <li><ls-static-5014804>Casein</ls-static-5014804></li>
+        <li><ls-static-7243571>Nuts</ls-static-7243571></li>
+        <li><ls-static-5436624>Dairy</ls-static-5436624></li>
+        <li><ls-static-3903537>Perservatives</ls-static-3903537></li>
+        <li><ls-static-6757138>Artificial Flavor</ls-static-6757138></li>
+      </ul>
+    </div>
+  </section>
+  <!-- \Free from  -->
+
+  <!-- What's inside -->
+  <section class="inside">
+    <div class="container">
+      <h2><ls-static-7652894>Inside</ls-static-7652894> <span class="bold"><ls-static-2196426>Simple Spectrum</ls-static-2196426></span></h2>
+      <div class="video-bg">
+        <div class="video">
+          <video controls poster="//cdn.shopify.com/s/files/1/0036/1820/9901/files/video-screen_c0714eee-c178-45b1-9d05-d8ae3d2908eb_800x.jpg?v=1599874543">
+            <source src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/Simple_Spectrum_Supplement_Educational_Video.mp4" type="video/mp4">
+          </video>
+          <div class="video-screen">
+            <img src="{{ 'video-screen.jpg' | asset_url }}" alt="">
+          </div>
+          <div class="play-btn"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- \What's inside -->
+
+  <!-- More Details -->
+  <section class="more-details">
+    <div class="container">
+      <h2><ls-static-5207025>More</ls-static-5207025> <span class="bold"><ls-static-8446967>Details</ls-static-8446967></span></h2>
+      <div class="dropdown-list">
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9930895>product benefits</ls-static-9930895>
+          </div>
+          <div class="text">
+            <ls-static-8194987>The brain and nervous system are constantly developing in children, so we made sure Simple Spectrum contains the top research-backed nutrients to support the healthy growth of brain cells. Most children's multivitamins do not have the exclusive mind support ingredients we have selectively chosen for our formula</ls-static-8194987>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-2531532>supplement facts and ingredients</ls-static-2531532>
+          </div>
+          <div class="text">
+            <img src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/ingredients.png?v=1597435329" style="max-width:100%">
+            <ls-static-9830891>Simple Spectrum was designed with our kids with sensory needs in mind and is an unflavored dissolvable powder without gluten, casein, added sugar, soy, binding agents, artificial colors, preservatives, GMOs and dairy. The highest quality vitamins, minerals, and other nutrients in the best forms - It really is quite simple.</ls-static-9830891>
+            
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>suggested use & dosage</ls-static-9053741>
+          </div>
+          <div class="text">
+            <p><ls-static-6732843>We recommend taking Simple Spectrum Supplement first thing in the morning with a meal. Mix it with your favorite food or drink (preferably 4-6 oz).</ls-static-6732843></p>
+            <p><ls-static-1561972>Begin at a low dosage (about half of the suggested dose for your child's weight) and gradually increase to the dosage listed below.</ls-static-1561972></p>
+            <ul>
+            <li><span><strong><ls-static-2114675>30-60 lb: 1/4 scoop 2 times a day*</ls-static-2114675></strong></span></li>
+            <li><span><strong><ls-static-9690583>61-90 lb: 1/2 scoop 2 times a day*</ls-static-9690583></strong></span></li>
+            <li><span><strong><ls-static-5911858>90-120 lb: 3/4 scoop 2 times a day*</ls-static-5911858></strong></span></li>
+            <li><span><strong><ls-static-4005449>120-150 lb: 1 scoop 2 times a day*</ls-static-4005449></strong></span></li>
+            <li><span><strong><ls-static-4506979>150-180 lb: 1 1/4 scoop 2 times a day*</ls-static-4506979></strong></span></li>
+            <li><span><strong><ls-static-2974061>180-210 lb: 1 1/2 scoop 2 times a day*</ls-static-2974061></strong></span></li>
+            <li><span><strong><ls-static-3679088>210-240 lb: 1 3/4 scoop 2 times a day*</ls-static-3679088></strong></span></li>
+            <li><span><strong><ls-static-1620918>240-270 lb: 2 scoop 2 times a day*</ls-static-1620918></strong></span></li>
+            <li><span><strong><ls-static-9503308>270-300 lb: 2 1/4 scoop 2 times a day*</ls-static-9503308></strong></span></li>
+            </ul>
+            <p><em><span><ls-static-9871374>* One scoop equivalent to 1 teaspoon</ls-static-9871374></span></em></p>
+            <ul>
+            <li><span><strong><ls-static-9069946>For a 30-60 lb child, take 1/4 teaspoons 2x per day*</ls-static-9069946></strong></span></li>
+            <li><span><strong><ls-static-1907829>For a 61-90 lb child, take 1/2 teaspoons 2x per day*</ls-static-1907829></strong></span></li>
+            <li><span><strong><ls-static-5270486>For a 90-120 lb child, take 3/4 teaspoons 2x per day*</ls-static-5270486></strong></span></li>
+            <li><span><strong><ls-static-6161187>For a 120-150 lb child, take 1 teaspoon 2x per day*</ls-static-6161187></strong></span></li>
+            <li><span><strong><ls-static-2297214>For a 150-180 lb child, take 1 1/4 teaspoons 2x per day*</ls-static-2297214></strong></span></li>
+            <li><span><strong><ls-static-9285291>For a 180-210 lb child, take 1 1/2 teaspoons 2x per day*</ls-static-9285291></strong></span></li>
+            <li><span><strong><ls-static-3404759>For a 210-240 lb child, take 1 3/4 teaspoons 2x per day*</ls-static-3404759></strong></span></li>
+            <li><span><strong><ls-static-6733839>For a 240-270 lb child, take 2 teaspoons 2x per day*</ls-static-6733839></strong></span></li>
+            <li><span><strong><ls-static-3188828>For a 270-300 lb child, take 2 1/4 teaspoons 2x per day*</ls-static-3188828></strong></span></li>
+            </ul>
+            <p><span><em><ls-static-9161897>*Dosages can be combined but 2 x per day preferred (morning and midday with food)</ls-static-9161897></em></span></p>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-4386734>manufacturing & expiration</ls-static-4386734>
+          </div>
+          <div class="text">
+            <ls-static-4385254>Finding a manufacturing facility that met the high standards of our founders was extremely important to us. All of our manufacturing is done in a FDA certified facility right here in the U.S.A.</ls-static-4385254><br/><br/>
+            <ls-static-4368923>Third-party testing is also very important to us. This means that an independent organization has reviewed our product and determined that the final product complies with specific standards for safety, quality, ingredient accuracy and performance. Basically, this is the most effective way to guarantee that the ingredients you intend to be in your product are actually in your product. Unfortunately, this is not the standard practice for most supplement makers but it absolutely should be!</ls-static-4368923><br/><br/>
+            <ls-static-2833702>All of our supplement containers have the manufactured date listed on them. Our supplement is effective and safe to use for up to two years after the manufactured date.</ls-static-2833702>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- \More Details -->
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div id="looxReviews" data-product-id="1673605611629" class="page-width"></div>
+  </section>
+  <!-- \Reviews -->
+
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <div class="container">
+      <h2><ls-static-4316150>Subscribe to the</ls-static-4316150> <span class="bold"><ls-static-2563910>Simple Digest</ls-static-2563910></span></h2>
+      <p>
+        <ls-static-4365234>We’ll send you tips and resources as well as sales and promotions!</ls-static-4365234>
+      </p>
+      {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="form--success">{% include 'LS_83195002989_locales', LS_locales_item: 'general.newsletter_form.confirmation',   %}{% if LS_83195002989_locales_value == blank %}{{ 'general.newsletter_form.confirmation' | t }}{% else %}{{ LS_83195002989_locales_value  }}{% endif %}</p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="contact[email]" placeholder="&lt;ls-static-8449887&gt;Enter your email address&lt;/ls-static-8449887&gt;">
+        {% include 'LS_83195002989_options', product: product %}
+<button type="submit" class="btn blue-btn"><ls-static-4147042>sign me up</ls-static-4147042></button>
+      {% endif %}
+      {% endform %}
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+<!-- Modal HTML embedded directly into document -->
+<div id="subscription" class="modal">
+  <h1><ls-static-1617652>Subscribe + Save!</ls-static-1617652></h1>
+  <h5><ls-static-1098078>Save 10% off regular prices on all future orders.</ls-static-1098078></h5>
+  <p><ls-static-4709015>Your orders will be automatically shipped so you never run out. Manage your subscriptions through your online account to pause, skip or cancel future shipments at anytime.</ls-static-4709015></p>
+  <div class="quant-freq">
+    <div class="quant"><ls-static-2732327>Quantity: Four Bottles</ls-static-2732327></div>
+    <div class="freq"><ls-static-9788662>Frequency: Every 120 Days</ls-static-9788662></div>
+  </div>
+  <a href="#" class="yes"><ls-static-9620873>Yes, Please!</ls-static-9620873></a>
+  <a href="#" class="no"><ls-static-5737777>No, Thank You</ls-static-5737777></a>
+</div>
+
+{{ 'pdp-ppc.js' | asset_url | script_tag }}

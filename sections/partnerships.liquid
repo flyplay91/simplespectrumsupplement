@@ -1,0 +1,51 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Partnerships -->
+  <secion class="partnerships">
+    <div class="container">
+      <h2>{% capture LS_locales_settings_key %}{{ section.id }}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h2>
+      <div class="partners">
+        {% for block in section.blocks %} 
+        <a href="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.url{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.url }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" class="partner">
+          <img src="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.image{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ block.settings.image | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: block.settings.image, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </secion>
+<!-- \Partnerships -->
+
+  {% schema %}
+  {
+    "name": "Partnerships",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "id": "header",
+        "type": "html",
+        "label": "Header"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image_picker",
+        "name": "Add Partner",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "image"
+          },
+          {
+            "id": "url",
+            "type": "url",
+            "label": "URL"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Partnerships",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

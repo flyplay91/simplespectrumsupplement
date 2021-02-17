@@ -1,0 +1,110 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'cart.scss.css' | asset_url | stylesheet_tag }}
+<div class="page-width" id="cart-template">
+{% if cart.item_count > 0 %}
+  <h1><ls-static-6860402>Cart</ls-static-6860402></h1>
+  <a href="/products/simple-spectrum-nutritional-support-supplement" class="text-link">
+    <ls-static-4999675>Continue shopping</ls-static-4999675>
+  </a>
+  <form action="/cart?locale={%- render "ls-language" -%}" method="post" novalidate>
+    <table class="desktop">
+      <thead>
+        <th colspan="3"><ls-static-6008124>Item</ls-static-6008124></th>
+        <th><ls-static-8744705>Price</ls-static-8744705></th>
+        <th><ls-static-4126093>Quantity</ls-static-4126093></th>
+        <th><ls-static-7795780>Total</ls-static-7795780></th>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+				{% assign propertySize = item.properties | size %}
+                {% if propertySize < 0 %}
+                  {% for p in item.properties and false %}
+                    {% assign first_character_in_key = p.first | truncate: 1, '' %}
+                    {% unless p.last == blank or first_character_in_key == '_' %}
+                      <br>
+                      {{ p.first }}: {{ p.last }}
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+			
+          <tr>
+            <td>
+              <a href="{{ item.url | within: collections.all }}">
+                <img src="{% comment ls-rpl %}{{ item | img_url: 'medium' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: item, img_url: 'medium' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}" alt="{% include 'LS_83195002989_cart', item: item, handle: item.product.handle, paramkey: '' %}{{ LS_83195002989_item_val | escape  }}">
+              </a>
+            </td>
+            <td colspan="2">
+              <a class="product-link" href="{{ item.url }}">{% include 'LS_83195002989_cart', item: item, handle: item.product.handle, paramkey: 'product' %}{{ LS_83195002989_item_val  }}</a><br/>
+              {% include 'LS_83195002989_cart', item: item, handle: item.product.handle, paramkey: 'variant' %}{{ LS_83195002989_item_val  }}
+              <span class="bold_ro_desc" data-product-id="{{item.id}}-{{ forloop.index0 }}"></span>
+              <span class="bold_load_cart_item_properties"></span>
+              <a class="remove-item" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><ls-static-9180685>Remove</ls-static-9180685></a>
+            </td>
+            <td><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" data-item-key="{{item.key}}" style="display:none !important;"></span>
+            {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: item.final_line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ item.final_line_price | money }}{% endif %}</td>
+            <td>
+              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+            </td>
+            <td>
+              {% if item.original_line_price != item.line_price %}{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: item.original_line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ item.original_line_price | money }}{% endif %}{% endif %}
+              <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style=“display:none !important;“></span>
+              {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: item.line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ item.line_price | money }}{% endif %}
+              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <table class="mobile">
+      <thead>
+        <th colspan="6"><ls-static-9981942>Item</ls-static-9981942></th>
+        <th><ls-static-4323541>Total</ls-static-4323541></th>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+				{% assign propertySize = item.properties | size %}
+                {% if propertySize < 0 %}
+                  {% for p in item.properties %}
+                    {% assign first_character_in_key = p.first | truncate: 1, '' %}
+                    {% unless p.last == blank or first_character_in_key == '_' %}
+                      <br>
+                      {{ p.first }}: {{ p.last }}
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+			
+          <tr>
+            <td colspan="3">
+              <a href="{{ item.url | within: collections.all }}">
+                <img src="{% comment ls-rpl %}{{ item | img_url: 'medium' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: item, img_url: 'medium' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}" alt="{% include 'LS_83195002989_cart', item: item, handle: item.product.handle, paramkey: '' %}{{ LS_83195002989_item_val | escape  }}">
+              </a>
+            </td>
+            <td colspan="3">
+              <a class="product-link" href="{{ item.url }}">{% include 'LS_83195002989_cart', item: item, handle: item.product.handle, paramkey: 'product' %}{{ LS_83195002989_item_val  }}</a><br/>
+              {% include 'LS_83195002989_cart', item: item, handle: item.product.handle, paramkey: 'variant' %}{{ LS_83195002989_item_val  }}
+              <span class="bold_ro_desc" data-product-id="{{item.id}}-{{ forloop.index0 }}"></span>
+              <span class="bold_load_cart_item_properties"></span>
+              <a class="remove-item" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><ls-static-2616994>Remove</ls-static-2616994></a>
+            </td>
+            <td>
+              {% if item.original_line_price != item.line_price %}{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: item.original_line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ item.original_line_price | money }}{% endif %}{% endif %}
+              <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style=“display:none !important;“></span>
+              {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: item.line_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ item.line_price | money }}{% endif %}
+              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="controls">
+      <p><ls-static-3993045>Subtotal:</ls-static-3993045> <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style=“display:none !important;“></span>{% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: cart.total_price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ cart.total_price | money }}{% endif %}</p>
+      <p style="padding-bottom: 20px;"><small><ls-static-3286442>Taxes and shipping calculated at checkout</ls-static-3286442></small></p>
+      <button class="update-button" type="submit" name="update"><ls-static-4582344>Update</ls-static-4582344></button>
+      <button class="checkout-button" type="submit" name="checkout"><ls-static-7212124>Checkout</ls-static-7212124></button>
+    </div>
+  </form>
+{% else %}
+  <h2><ls-static-1135695>cart</ls-static-1135695></h2>
+  <ls-static-2957153>Cart is empty</ls-static-2957153>
+{% endif %}
+</div>

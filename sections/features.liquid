@@ -1,0 +1,56 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      {% assign count = 0 %}
+      {% for block in section.blocks %} 
+      {% assign count = count | plus: 1 %}
+      <div class="feature feature-{{ count }}">
+        <div class="icon">
+          <img src="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.image{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ block.settings.image | img_url: 'original'}}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: block.settings.image, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL}}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+        </div>
+        <div class="content">
+          <h4>{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h4>
+          <p>
+            {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- \Features Section -->
+
+  {% schema %}
+  {
+    "name": "Features",
+    "class": "index-section index-section--flush",
+    "blocks": [
+      {
+        "type": "image_picker",
+        "name": "Add Feature",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "image"
+          },
+          {
+            "id": "header",
+            "type": "html",
+            "label": "Header"
+          },
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Features",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

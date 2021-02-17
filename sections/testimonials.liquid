@@ -1,0 +1,180 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>{% capture LS_locales_settings_key %}{{ section.id }}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h2>
+      <p>
+        {% capture LS_locales_settings_key %}{{ section.id }}.body{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.body }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+      </p>
+
+      <!-- Video Slider -->
+      <div class="video-slider">
+        {% for block in section.blocks %} 
+        <div class="video">
+          <video controls poster="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.video_thumbnail{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ block.settings.video_thumbnail | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: block.settings.video_thumbnail, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}">
+            <source src="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.video_url{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.video_url }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" type="video/mp4">
+          </video>
+          <div class="video-screen">
+            <img src="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.video_thumbnail{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ block.settings.video_thumbnail | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: block.settings.video_thumbnail, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+          </div>
+          <div class="play-btn"></div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- \Video Slider -->
+    </div>
+
+    <!-- Testimonials Slider -->
+    <div class="testimonials-block">
+      <a href="/pages/testimonials"><button class="btn yellow-btn"><ls-static-5810469>TESTIMONIALS</ls-static-5810469></button></a>
+      <div class="testimonials-slider">
+        <div class="testimonial-item">
+          <div class="testimonial">
+            <img src="{% capture LS_locales_settings_key %}{{ section.id }}.t_img_1{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ section.settings.t_img_1 | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: section.settings.t_img_1, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+            <div class="bottom">
+              <div class="name">{% capture LS_locales_settings_key %}{{ section.id }}.t_text_1{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.t_text_1 }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</div>
+              <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item">
+          <div class="testimonial">
+            <img src="{% capture LS_locales_settings_key %}{{ section.id }}.t_img_2{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ section.settings.t_img_2 | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: section.settings.t_img_2, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+            <div class="bottom">
+              <div class="name">{% capture LS_locales_settings_key %}{{ section.id }}.t_text_2{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.t_text_2 }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</div>
+              <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item">
+          <div class="testimonial">
+            <img src="{% capture LS_locales_settings_key %}{{ section.id }}.t_img_3{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ section.settings.t_img_3 | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: section.settings.t_img_3, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+            <div class="bottom">
+              <div class="name">{% capture LS_locales_settings_key %}{{ section.id }}.t_text_3{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.t_text_3 }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</div>
+              <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item">
+          <div class="testimonial">
+            <img src="{% capture LS_locales_settings_key %}{{ section.id }}.t_img_4{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ section.settings.t_img_4 | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: section.settings.t_img_4, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+            <div class="bottom">
+              <div class="name">{% capture LS_locales_settings_key %}{{ section.id }}.t_text_4{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.t_text_4 }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</div>
+              <div class="stars">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- \Testimonials Slider -->
+
+  </section>
+<!-- \Testimonials Section -->
+
+{% schema %}
+  {
+    "name": "Testimonials",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "id": "header",
+        "type": "html",
+        "label": "Header"
+      },
+      {
+        "id": "body",
+        "type": "html",
+        "label": "Body Text"
+      },
+      {
+        "id": "t_img_1",
+        "type": "image_picker",
+        "label": "1st Testimonial Image"
+      },
+      {
+        "id": "t_text_1",
+        "type": "text",
+        "label": "1st Testimonial Text"
+      },
+      {
+        "id": "t_img_2",
+        "type": "image_picker",
+        "label": "2nd Testimonial Image"
+      },
+      {
+        "id": "t_text_2",
+        "type": "text",
+        "label": "2nd Testimonial Text"
+      },
+      {
+        "id": "t_img_3",
+        "type": "image_picker",
+        "label": "3rd Testimonial Image"
+      },
+      {
+        "id": "t_text_3",
+        "type": "text",
+        "label": "3rd Testimonial Text"
+      },
+      {
+        "id": "t_img_4",
+        "type": "image_picker",
+        "label": "4th Testimonial Image"
+      },
+      {
+        "id": "t_text_4",
+        "type": "text",
+        "label": "4th Text Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image_picker",
+        "name": "Add Video",
+        "settings": [
+          {
+            "id": "video_url",
+            "type": "url",
+            "label": "Video URL"
+          },
+          {
+            "id": "video_thumbnail",
+            "type": "image_picker",
+            "label": "Video Thumbnail"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Testimonials",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

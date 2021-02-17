@@ -1,0 +1,59 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'blog-template.scss.css' | asset_url | stylesheet_tag }}
+
+ <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1>{% include 'LS_83195002989_title', item: article %}{{ LS_83195002989_item_title  }}</h1>
+      </div>
+    </div>
+  </section>
+  <!-- \Hero -->
+
+  <!-- Post -->
+  <section class="post">
+    <div class="container">
+      <div class="post-info">
+        <div class="left-part">
+          <a href="#" class="category"><ls-static-9911168>category one</ls-static-9911168></a>
+          {% for tag in article.tags %}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="category">{% include 'LS_83195002989_article_tags', search_tag: tag , LS_article: article %}{{ LS_83195002989_tag_item  }}</a>
+          {% endfor %}
+          <div class="date">{{ article.published_at | date: "%^B %d, %Y" }}</div>
+        </div>
+        <a href="#" class="share"><ls-static-8236718>SHARE</ls-static-8236718> <i class="fas fa-share"></i></a>
+      </div>
+
+      <div class="post-content">
+        {% if article.image %}
+        <img src="{% comment ls-rpl %}{{ article.image.src | img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: article.image.src, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}" alt="">
+        {% endif %}
+        {% include 'LS_83195002989_content', item: article %}{{ LS_83195002989_item_content  }}
+      </div>
+    </div>
+  </section>
+  <!-- \Post -->
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <div class="container">
+      <h2><ls-static-8950577>Subscribe to the</ls-static-8950577> <span class="bold"><ls-static-1784301>Simple Digest</ls-static-1784301></span></h2>
+      <p>
+        <ls-static-1816419>We’ll send you tips and resources as well as sales and promotions!</ls-static-1816419>
+      </p>
+      {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="form--success">{% include 'LS_83195002989_locales', LS_locales_item: 'general.newsletter_form.confirmation',   %}{% if LS_83195002989_locales_value == blank %}{{ 'general.newsletter_form.confirmation' | t }}{% else %}{{ LS_83195002989_locales_value  }}{% endif %}</p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="contact[email]" placeholder="&lt;ls-static-7766944&gt;Enter your email address&lt;/ls-static-7766944&gt;">
+        <button type="submit" class="btn blue-btn"><ls-static-6783065>sign me up</ls-static-6783065></button>
+      {% endif %}
+      {% endform %}
+    </div>
+  </section>
+  <!-- \Subscribe -->
+
+{{ 'blog-template.js' | asset_url | script_tag }}

@@ -1,0 +1,15 @@
+{%- include 'LS_83195002989_global' -%}
+<h1>{% include 'LS_83195002989_title', item: page %}{{ LS_83195002989_item_title  }}</h1>
+{% form 'contact' %}
+  {% if form.posted_successfully? %} <ls-static-5846616>Thank you for your contact</ls-static-5846616> {% endif %}
+  {{ form.errors | default_errors }}
+  <label for="ContactFormName"><ls-static-6947356>name</ls-static-6947356></label>
+  <input type="text" id="ContactFormName" name="contact[name]">
+  <label for="ContactFormEmail"><ls-static-5120346>email</ls-static-5120346></label>
+  <input type="email" id="ContactFormEmail" name="contact[email]">
+  <label for="ContactFormPhone"><ls-static-9708513>phone</ls-static-9708513></label>
+  <input type="tel" id="ContactFormPhone" name="contact[phone]">
+  <label for="ContactFormMessage"><ls-static-4496776>message</ls-static-4496776></label>
+  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
+  <input type="submit" value="&lt;ls-static-6840694&gt;send&lt;/ls-static-6840694&gt;">
+{% endform %}

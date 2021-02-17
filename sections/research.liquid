@@ -1,0 +1,77 @@
+{%- include 'LS_83195002989_global' -%}
+  <!-- Research -->
+  <section class="research">
+    <div class="container">
+      <div class="content">
+        <h2>{% capture LS_locales_settings_key %}{{ section.id }}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h2>
+        <p>
+          {% capture LS_locales_settings_key %}{{ section.id }}.body{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.body }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+        </p>
+        <ul>
+          {% capture LS_locales_settings_key %}{{ section.id }}.points{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.points }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+        </ul>
+        <a href="{% capture LS_locales_settings_key %}{{ section.id }}.button_url{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.button_url }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}"><button class="btn red-btn">{% capture LS_locales_settings_key %}{{ section.id }}.button_text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.button_text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</button></a>
+      </div>
+    </div>
+
+    <div class="grid">
+      {% assign count = 0 %}
+      {% for block in section.blocks %} 
+      {% assign count = count | plus: 1 %}
+      <img src="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.image{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ block.settings.image | img_url: 'original'}}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: block.settings.image, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL}}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="" class="grid-item-{{ count }}">
+      {% endfor %}
+      <div class="background-img"></div>
+    </div>
+  </section>
+  <!-- \Research -->
+
+  {% schema %}
+  {
+    "name": "Research",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "id": "header",
+        "type": "html",
+        "label": "Header"
+      },
+      {
+        "id": "body",
+        "type": "html",
+        "label": "Body Text"
+      },
+      {
+        "id": "points",
+        "type": "html",
+        "label": "Bullet Points"
+      },
+      {
+        "id": "button_text",
+        "type": "text",
+        "label": "Button Text"
+      },
+      {
+        "id": "button_url",
+        "type": "url",
+        "label": "Button URL"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image_picker",
+        "name": "Add Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "image"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Research",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

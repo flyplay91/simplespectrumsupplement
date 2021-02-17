@@ -1,0 +1,38 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'faq.scss.css' | asset_url | stylesheet_tag }}
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1><span class="bold">{% include 'LS_83195002989_title', item: page %}{{ LS_83195002989_item_title  }}</span></h1>
+      </div>
+    </div>
+    <img src="{{ 'faq-bg.jpg' | asset_url }}" alt="">
+  </section>
+  <!-- \Hero -->
+
+  {% section 'faq' %}
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <div class="container">
+      <h2><ls-static-9092805>Subscribe to the</ls-static-9092805> <span class="bold"><ls-static-4087132>Simple Digest</ls-static-4087132></span></h2>
+      <p>
+        <ls-static-7364490>We’ll send you tips and resources as well as sales and promotions!</ls-static-7364490>
+      </p>
+      {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="form--success">{% include 'LS_83195002989_locales', LS_locales_item: 'general.newsletter_form.confirmation',   %}{% if LS_83195002989_locales_value == blank %}{{ 'general.newsletter_form.confirmation' | t }}{% else %}{{ LS_83195002989_locales_value  }}{% endif %}</p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="contact[email]" placeholder="&lt;ls-static-7661652&gt;Enter your email address&lt;/ls-static-7661652&gt;">
+        <button type="submit" class="btn blue-btn"><ls-static-5279418>sign me up</ls-static-5279418></button>
+      {% endif %}
+      {% endform %}
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+{{ 'faq.js' | asset_url | script_tag }}

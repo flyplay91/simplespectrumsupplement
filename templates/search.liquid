@@ -1,0 +1,23 @@
+{%- include 'LS_83195002989_global' -%}
+{% paginate search.results by 10 %}
+  <form action="/search" method="get" role="search">
+    <input type="search" name="q" value="{{ search.terms | escape }}">
+    <button type="submit"><ls-static-8982706>search</ls-static-8982706></button>
+  </form>
+
+  {% if search.performed %}
+    {% for item in search.results %}
+      {% if item.featured_image %}
+        <a href="{{ item.url | within: collection }}" title="{% if LS_83195002989_lang == LS_83195002989_default_lang %}{% assign LS_83195002989_item_val = item.title %}{% else %}{% capture LS_83195002989_locales_item %}{% if 'title' == 'title' %}{{ LS_83195002989_lang }}_title{% else %}{{ LS_83195002989_lang }}_body_html{% endif %}{% endcapture %}{% if item.metafields.langshop[LS_83195002989_locales_item] %}{% assign LS_83195002989_item_val = item.metafields.langshop[LS_83195002989_locales_item] %}{% else %}{% assign LS_83195002989_item_val = item.title %}{% endif %}{% endif %}{{ LS_83195002989_item_val | escape }}">
+          {% comment ls-rpl %}{{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: item.featured_image.src, img_url: 'medium' -%}{%- endcapture -%}{{ LS_IMG_URL | img_tag: item.featured_image.alt }}{% comment /ls-rpl %}{% endcomment %}
+        </a>
+      {% endif %}
+      <h5>{% if LS_83195002989_lang == LS_83195002989_default_lang %}{% assign LS_83195002989_item_val = item.title %}{% else %}{% capture LS_83195002989_locales_item %}{% if 'title' == 'title' %}{{ LS_83195002989_lang }}_title{% else %}{{ LS_83195002989_lang }}_body_html{% endif %}{% endcapture %}{% if item.metafields.langshop[LS_83195002989_locales_item] %}{% assign LS_83195002989_item_val = item.metafields.langshop[LS_83195002989_locales_item] %}{% else %}{% assign LS_83195002989_item_val = item.title %}{% endif %}{% endif %}{{ LS_83195002989_item_val | link_to: item.url }}</h5>
+      <p>{% if LS_83195002989_lang == LS_83195002989_default_lang %}{% assign LS_83195002989_item_val = item.content %}{% else %}{% capture LS_83195002989_locales_item %}{% if 'title' == 'content' %}{{ LS_83195002989_lang }}_title{% else %}{{ LS_83195002989_lang }}_body_html{% endif %}{% endcapture %}{% if item.metafields.langshop[LS_83195002989_locales_item] %}{% assign LS_83195002989_item_val = item.metafields.langshop[LS_83195002989_locales_item] %}{% else %}{% assign LS_83195002989_item_val = item.content %}{% endif %}{% endif %}{{ LS_83195002989_item_val | strip_html | truncatewords: 50 }}</p>
+    {% else %}
+      <ls-static-4014398>no results</ls-static-4014398>
+    {% endfor %}
+  {% endif %}
+
+  {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+{% endpaginate %}

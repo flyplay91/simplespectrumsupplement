@@ -1,0 +1,63 @@
+{%- include 'LS_83195002989_global' -%}
+<!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-slider">
+      {% for block in section.blocks %} 
+      <div class="slide">
+        <img src="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.image{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{% comment ls-rpl %}{{ block.settings.image  | img_url: 'original'}}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: block.settings.image, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL}}{% comment /ls-rpl %}{% endcomment %}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}" alt="">
+        <div class="content">
+          <h1>{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h1>
+          <p>
+            {% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
+          </p>
+          <a href="{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.link{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.link }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}"><button class="btn yellow-btn">{% capture LS_locales_settings_key %}{{ section.id }}.{{block.id}}.link_text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ block.settings.link_text}}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</button></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- \Hero Section -->
+
+{% schema %}
+  {
+    "name": "Hero",
+    "class": "index-section index-section--flush",
+    "blocks": [
+      {
+        "type": "image_picker",
+        "name": "Add Slide",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "image"
+          },
+          {
+            "id": "header",
+            "type": "html",
+            "label": "Header"
+          },
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          },
+          {
+            "id": "link",
+            "type": "url",
+            "label": "Link URL"
+          },
+          {
+            "id": "link_text",
+            "type": "text",
+            "label": "Link text"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Hero",
+      "category": "Text"
+    }]
+  }
+{% endschema %}
